@@ -29,6 +29,10 @@ creado:
 
 #define _XTAL_FREQ 4000000
 #include <xc.h>
+#include "i2c.h"						// Libreria del protocolo i2c
+
+unsigned char dato_tx;                      // Almacena el dato a enviar
+unsigned char dato_rx;                      // Almacena el dato recibido del esclavo
 
 ////////////////////////////////////////////////////////////////////////////////
 // PROTOTIPOS DE FUNCIONES
@@ -41,8 +45,23 @@ void setupINTOSC(void);
 
 void main(void) {
     setupINTOSC();
-    while (1) {
-
+    while (1) 
+    {
+        //transmicion de datos 
+        dato_tx = PORTA & 0x0F;
+        I2C_Start();
+        I2C_Write(0xA0);
+        I2C_Write(dato_tx);
+        I2C_Stop();
+        __delay_us(10);
+        
+        //recepcion de datos 
+        I2C_Start();
+        I2C_Write(0xA0 | 1);
+        dato_rx = I2C_Read();
+        PORTD = dato_rx;
+        I2C_Stop();
+        __delay_us(10);
     }
     return;
 }
@@ -59,4 +78,19 @@ void setupINTOSC(void) {
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 0;
+    
+    //Pines digitales 
+    ANSEL = 0;
+    ANSELH = 0;
+    
+    //Entradas/salidas
+    TRISA = 0xFF;                           // Puerto A como entrada
+    TRISDbits.TRISD0 = 0;                      // Pin RD0 como salida
+    TRISDbits.TRISD1 = 0;                      // Pin RD1 como salida
+    TRISDbits.TRISD2 = 0;                      // Pin RD2 como salida
+    TRISDbits.TRISD3 = 0;                      // Pin RD3 como salida
+    PORTD = 0x00;                            // Limpia el puerto D
+    
+    //configuracion del i2c
+    I2C_Init_Master(I2C_100KHZ);            // Inicializa el protocolo I2C en modo maestro
 }

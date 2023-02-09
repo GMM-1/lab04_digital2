@@ -2,14 +2,14 @@
 #include <xc.h>
 #define _XTAL_FREQ 4000000
 
-#define TRIS_SCL TRISBbits.TRISB1
-#define TRIS_SDA TRISBbits.TRISB0
+#define TRIS_SCL TRISCbits.TRISC3
+#define TRIS_SDA TRISCbits.TRISC4
 
 #define I2C_100KHZ 0x80
 #define I2C_400KHZ 0x00
 
 //descomentar para el tipo de microcontrolador que se usara
-//#define I2C_MASTER_MODE
+#define I2C_MASTER_MODE
 //#define I2C_SLAVE_MODE
 
 #ifdef I2C_MASTER_MODE

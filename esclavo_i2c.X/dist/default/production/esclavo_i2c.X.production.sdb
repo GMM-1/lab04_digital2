@@ -1,0 +1,253 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F887 ]
+[d frameptr 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"42 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\esclavo_i2c.X\esclavo.c
+[v _INT_I2C INT_I2C `II(v  1 e 1 0 ]
+"66
+[v _main main `(v  1 e 1 0 ]
+"80
+[v _setupINTOSC setupINTOSC `(v  1 e 1 0 ]
+"76 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\esclavo_i2c.X\i2c.c
+[v _I2C_Init_Slave I2C_Init_Slave `(v  1 e 1 0 ]
+"90
+[v _I2C_Error_Read I2C_Error_Read `(s  1 e 2 0 ]
+"96
+[v _I2C_Write_Mode I2C_Write_Mode `(s  1 e 2 0 ]
+"100
+[v _I2C_Read_Mode I2C_Read_Mode `(s  1 e 2 0 ]
+"105
+[v _I2C_Error_Data I2C_Error_Data `(v  1 e 1 0 ]
+"116
+[v _I2C_Read_Slave I2C_Read_Slave `(uc  1 e 1 0 ]
+"128
+[v _I2C_Write_Slave I2C_Write_Slave `(v  1 e 1 0 ]
+"167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"353
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+[s S189 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"483
+[s S198 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+[u S203 . 1 `S189 1 . 1 0 `S198 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES203  1 e 1 @11 ]
+[s S22 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+]
+"554
+[u S30 . 1 `S22 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES30  1 e 1 @12 ]
+"844
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
+"851
+[v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
+[s S251 . 1 `uc 1 SSPM 1 0 :4:0 
+`uc 1 CKP 1 0 :1:4 
+`uc 1 SSPEN 1 0 :1:5 
+`uc 1 SSPOV 1 0 :1:6 
+`uc 1 WCOL 1 0 :1:7 
+]
+"871
+[s S257 . 1 `uc 1 SSPM0 1 0 :1:0 
+`uc 1 SSPM1 1 0 :1:1 
+`uc 1 SSPM2 1 0 :1:2 
+`uc 1 SSPM3 1 0 :1:3 
+]
+[u S262 . 1 `S251 1 . 1 0 `S257 1 . 1 0 ]
+[v _SSPCONbits SSPCONbits `VES262  1 e 1 @20 ]
+"1417
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+[s S164 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"1558
+[u S173 . 1 `S164 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES173  1 e 1 @135 ]
+[s S101 . 1 `uc 1 TRISD0 1 0 :1:0 
+`uc 1 TRISD1 1 0 :1:1 
+`uc 1 TRISD2 1 0 :1:2 
+`uc 1 TRISD3 1 0 :1:3 
+`uc 1 TRISD4 1 0 :1:4 
+`uc 1 TRISD5 1 0 :1:5 
+`uc 1 TRISD6 1 0 :1:6 
+`uc 1 TRISD7 1 0 :1:7 
+]
+"1620
+[u S110 . 1 `S101 1 . 1 0 ]
+[v _TRISDbits TRISDbits `VES110  1 e 1 @136 ]
+[s S232 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+]
+"1719
+[u S240 . 1 `S232 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES240  1 e 1 @140 ]
+[s S72 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1883
+[s S78 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S83 . 1 `S72 1 . 1 0 `S78 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES83  1 e 1 @143 ]
+"1980
+[v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
+"2049
+[v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
+"2178
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+[s S277 . 1 `uc 1 BF 1 0 :1:0 
+`uc 1 UA 1 0 :1:1 
+`uc 1 R_nW 1 0 :1:2 
+`uc 1 S 1 0 :1:3 
+`uc 1 P 1 0 :1:4 
+`uc 1 D_nA 1 0 :1:5 
+`uc 1 CKE 1 0 :1:6 
+`uc 1 SMP 1 0 :1:7 
+]
+"2232
+[s S286 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D 1 0 :1:5 
+]
+[s S291 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 I2C_READ 1 0 :1:2 
+`uc 1 I2C_START 1 0 :1:3 
+`uc 1 I2C_STOP 1 0 :1:4 
+`uc 1 I2C_DATA 1 0 :1:5 
+]
+[s S297 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nW 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nA 1 0 :1:5 
+]
+[s S302 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 nWRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 nADDRESS 1 0 :1:5 
+]
+[s S307 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 R_W 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 D_A 1 0 :1:5 
+]
+[s S312 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 READ_WRITE 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 DATA_ADDRESS 1 0 :1:5 
+]
+[u S317 . 1 `S277 1 . 1 0 `S286 1 . 1 0 `S291 1 . 1 0 `S297 1 . 1 0 `S302 1 . 1 0 `S307 1 . 1 0 `S312 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES317  1 e 1 @148 ]
+"3388
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"3450
+[v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+"3646
+[v _BF BF `VEb  1 e 0 @1184 ]
+"34 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\esclavo_i2c.X\esclavo.c
+[v _dato_tx dato_tx `uc  1 e 1 0 ]
+"35
+[v _dato_rx dato_rx `uc  1 e 1 0 ]
+"66
+[v _main main `(v  1 e 1 0 ]
+{
+"74
+} 0
+"80
+[v _setupINTOSC setupINTOSC `(v  1 e 1 0 ]
+{
+"103
+} 0
+"76 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\esclavo_i2c.X\i2c.c
+[v _I2C_Init_Slave I2C_Init_Slave `(v  1 e 1 0 ]
+{
+[v I2C_Init_Slave@add_slave add_slave `uc  1 a 1 wreg ]
+[v I2C_Init_Slave@add_slave add_slave `uc  1 a 1 wreg ]
+"78
+[v I2C_Init_Slave@add_slave add_slave `uc  1 a 1 0 ]
+"88
+} 0
+"42 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\esclavo_i2c.X\esclavo.c
+[v _INT_I2C INT_I2C `II(v  1 e 1 0 ]
+{
+"60
+} 0
+"128 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\esclavo_i2c.X\i2c.c
+[v _I2C_Write_Slave I2C_Write_Slave `(v  1 e 1 0 ]
+{
+[v I2C_Write_Slave@dato_i2c dato_i2c `uc  1 a 1 wreg ]
+[v I2C_Write_Slave@dato_i2c dato_i2c `uc  1 a 1 wreg ]
+"131
+[v I2C_Write_Slave@dato_i2c dato_i2c `uc  1 a 1 0 ]
+"136
+} 0
+"96
+[v _I2C_Write_Mode I2C_Write_Mode `(s  1 e 2 0 ]
+{
+"99
+} 0
+"116
+[v _I2C_Read_Slave I2C_Read_Slave `(uc  1 e 1 0 ]
+{
+"119
+[v I2C_Read_Slave@dato_i2c dato_i2c `uc  1 a 1 0 ]
+"126
+} 0
+"100
+[v _I2C_Read_Mode I2C_Read_Mode `(s  1 e 2 0 ]
+{
+"103
+} 0
+"90
+[v _I2C_Error_Read I2C_Error_Read `(s  1 e 2 0 ]
+{
+"94
+} 0
+"105
+[v _I2C_Error_Data I2C_Error_Data `(v  1 e 1 0 ]
+{
+"114
+} 0

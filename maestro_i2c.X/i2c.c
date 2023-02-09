@@ -7,7 +7,7 @@ void I2C_Init_Master(unsigned char sp_i2c)
     TRIS_SCL = 1;
     TRIS_SDA = 1;
     SSPSTAT = sp_i2c;
-	SSPCON1 = 0x28;
+	SSPCON = 0x28;
     SSPCON2 = 0x00;
     if(sp_i2c == I2C_100KHZ){
         SSPADD = 119;

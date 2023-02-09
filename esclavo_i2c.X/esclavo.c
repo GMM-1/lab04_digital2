@@ -29,11 +29,35 @@ creado:
 
 #define _XTAL_FREQ 4000000
 #include <xc.h>
+#include "i2c.h"                                // Libreria del protocolo i2c
+
+unsigned char dato_tx;                          // Almacena el dato a enviar
+unsigned char dato_rx;                          // Almacena el dato recibido del maestro
 
 ////////////////////////////////////////////////////////////////////////////////
 // PROTOTIPOS DE FUNCIONES
 ////////////////////////////////////////////////////////////////////////////////
 void setupINTOSC(void);
+
+void __interrupt() INT_I2C()
+{
+    if(PIR1bits.SSPIF == 1)
+    {
+        if(I2C_Error_Read() != 0)
+        {
+            I2C_Error_Data();
+        }
+        if(I2C_Write_Mode() == 1)
+        {
+            dato_rx = I2C_Read_Slave();
+        }
+        if(I2C_Read_Mode() == 1)
+        {
+            I2C_Write_Slave(dato_tx);
+        }
+        PIR1bits.SSPIF = 0;
+    }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // CODIGO PRINCIPAL
@@ -41,8 +65,10 @@ void setupINTOSC(void);
 
 void main(void) {
     setupINTOSC();
-    while (1) {
-
+    while (1) 
+    {
+        PORTD = dato_rx;
+        dato_tx = PORTA & 0x0F;
     }
     return;
 }
@@ -59,4 +85,19 @@ void setupINTOSC(void) {
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 0;
+    
+    //Pines digitales
+    ANSEL = 0;
+    ANSELH = 0;
+    
+    //Entradas y salidas 
+    TRISA = 0xFF;                               // Puerto A como entrada
+    TRISDbits.TRISD0 = 0;                          // Pin RD0 como salida
+    TRISDbits.TRISD1 = 0;                          // Pin RD1 como salida
+    TRISDbits.TRISD2 = 0;                          // Pin RD2 como salida
+    TRISDbits.TRISD3 = 0;                          // Pin RD3 como salida
+    PORTD = 0x00;                                // Limpia el puerto D
+    
+    //configuracion del i2c
+    I2C_Init_Slave(0xA0);                       // Inicializa el protocolo I2C en modo esclavo
 }

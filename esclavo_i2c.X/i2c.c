@@ -79,7 +79,7 @@ void I2C_Init_Slave(unsigned char add_slave)
     TRIS_SDA = 1;
     SSPSTAT = 0x80;
     SSPADD = add_slave;
-    SSPCON1 = 0x36;
+    SSPCON = 0x36;
     SSPCON2 = 0x01;
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
@@ -89,8 +89,8 @@ void I2C_Init_Slave(unsigned char add_slave)
 
 short I2C_Error_Read(void)
 {
-    SSPCON1bits.CKP = 0;
-    return ((SSPCON1bits.SSPOV) || (SSPCON1bits.WCOL)) ? 1 : 0;
+    SSPCONbits.CKP = 0;
+    return ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)) ? 1 : 0;
 }
 
 short I2C_Write_Mode(void)
@@ -105,12 +105,12 @@ short I2C_Read_Mode(void)
 void I2C_Error_Data(void)
 {
     short z;
-    SSPCON1bits.CKP = 0;
+    SSPCONbits.CKP = 0;
     z = SSPBUF;
-    SSPCON1bits.SSPOV = 0;
-    SSPCON1bits.WCOL = 0;
-    SSPCON1bits.CKP = 1;
-    SSPCON1bits.SSPM3 = 0;
+    SSPCONbits.SSPOV = 0;
+    SSPCONbits.WCOL = 0;
+    SSPCONbits.CKP = 1;
+    SSPCONbits.SSPM3 = 0;
 }
 
 unsigned char I2C_Read_Slave(void)
@@ -120,8 +120,8 @@ unsigned char I2C_Read_Slave(void)
     z = SSPBUF;
     while(!BF);
     dato_i2c = SSPBUF;
-    SSPCON1bits.CKP = 1;
-    SSPCON1bits.SSPM3 = 0;
+    SSPCONbits.CKP = 1;
+    SSPCONbits.SSPM3 = 0;
     return dato_i2c;
 }
 
@@ -131,7 +131,7 @@ void I2C_Write_Slave(char dato_i2c)
     z = SSPBUF;
     BF = 0;
     SSPBUF = dato_i2c;
-    SSPCON1bits.CKP = 1;
+    SSPCONbits.CKP = 1;
     while(SSPSTATbits.BF == 1);
 }
 #endif
