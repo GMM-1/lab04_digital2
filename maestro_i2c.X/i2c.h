@@ -1,6 +1,13 @@
+/* #include "i2c.h"
+*
+* Creada por: Ing. Abiezer Hernandez O.
+* Fecha de creacion: 25/11/2019
+* Electronica y Circuitos
+*
+*/
 
 #include <xc.h>
-#define _XTAL_FREQ 4000000
+#define _XTAL_FREQ 8000000
 
 #define TRIS_SCL TRISCbits.TRISC3
 #define TRIS_SDA TRISCbits.TRISC4
@@ -8,7 +15,6 @@
 #define I2C_100KHZ 0x80
 #define I2C_400KHZ 0x00
 
-//descomentar para el tipo de microcontrolador que se usara
 #define I2C_MASTER_MODE
 //#define I2C_SLAVE_MODE
 

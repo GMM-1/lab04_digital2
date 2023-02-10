@@ -1,103 +1,136 @@
 /*
- ********************************************************************************
+********************************************************************************
 Universidad del Valle de Guatemala
- * curso: 
+curso: Electronica Digital 2
 Autor: Gabriel Andrade
 compilador: XC8
-proyecto: 
+proyecto: laboratorio 04
 hardware: PIC 16F887
-creado: 
+creado: 08/02/2023
 última modificación: 
- ********************************************************************************
+********************************************************************************
  */
-
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
-#pragma config WDTE = OFF        // Watchdog Timer Enable bit (WDT enabled)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
-#pragma config MCLRE = OFF       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
+#pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
 #pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
-#pragma config BOREN = OFF       // Brown Out Reset Selection bits (BOR enabled)
-#pragma config IESO = OFF        // Internal External Switchover bit (Internal/External Switchover mode is enabled)
-#pragma config FCMEN = OFF       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
-#pragma config LVP = OFF         // Low Voltage Programming Enable bit (RB3/PGM pin has PGM function, low voltage programming enabled)
+#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
+#pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
 
 // CONFIG2
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-#define _XTAL_FREQ 4000000
+////////////////////////////////////////////////////////////////////////////////
+//LIBRERIAS
+////////////////////////////////////////////////////////////////////////////////
 #include <xc.h>
-#include "i2c.h"                                // Libreria del protocolo i2c
+#include <stdint.h>
+#include <stdio.h>
+#include "i2c.h"
 
-unsigned char dato_tx;                          // Almacena el dato a enviar
-unsigned char dato_rx;                          // Almacena el dato recibido del maestro
+
+#define _XTAL_FREQ 8000000 //Frecuencia 8MHz
 
 ////////////////////////////////////////////////////////////////////////////////
-// PROTOTIPOS DE FUNCIONES
+//VARIABLES
 ////////////////////////////////////////////////////////////////////////////////
-void setupINTOSC(void);
+unsigned char valor_ADC;
+unsigned char temporal;
 
-void __interrupt() INT_I2C()
-{
-    if(PIR1bits.SSPIF == 1)
+////////////////////////////////////////////////////////////////////////////////
+//DECLARACION DE FUNCIONES
+////////////////////////////////////////////////////////////////////////////////
+void setup(void);
+
+////////////////////////////////////////////////////////////////////////////////
+//RUTINA DE INTERRUPCION
+////////////////////////////////////////////////////////////////////////////////
+void __interrupt() isr(void)
+{ 
+    //INTERRUPCION DEL ADC
+    if (PIR1bits.ADIF == 1) //si se enciende la bandera del adc
     {
-        if(I2C_Error_Read() != 0)
+        valor_ADC = ADRESH; //asignamos el valor de adc a la variable 
+        PIR1bits.ADIF = 0;  //apagamos la bandera
+    }
+    
+    //INTERRUPCION DEL I2C
+    if (PIR1bits.SSPIF == 1) //si se enciende la bandera
+    {
+        if(I2C_Error_Read() != 0) //rutina para verificar errores
         {
             I2C_Error_Data();
         }
-        if(I2C_Write_Mode() == 1)
+        if(I2C_Write_Mode() == 1) //recibir datos
         {
-            dato_rx = I2C_Read_Slave();
+            temporal = I2C_Read_Slave(); //recibimos el dato en una variable 
         }
-        if(I2C_Read_Mode() == 1)
+        if(I2C_Read_Mode() == 1) //mandar datos
         {
-            I2C_Write_Slave(dato_tx);
+            I2C_Write_Slave(valor_ADC); //enviamos el ADC
         }
-        PIR1bits.SSPIF = 0;
+        PIR1bits.SSPIF = 0; //apagamos la bandera
     }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// CODIGO PRINCIPAL
+//CODIGO PRINCIPAL 
 ////////////////////////////////////////////////////////////////////////////////
-
-void main(void) {
-    setupINTOSC();
-    while (1) 
+void main(void) 
+{
+    setup();    //setup del reloj, puertos, modulos e interrupciones 
+    while(1)
     {
-        PORTD = dato_rx;
-        dato_tx = PORTA & 0x0F;
+        if (ADCON0bits.GO == 0)
+        {
+            ADCON0bits.GO = 1;  //bit the inicio para el ADC
+        }
     }
-    return;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// FUNCIONES
+//CODIGOS AUXILIARES
 ////////////////////////////////////////////////////////////////////////////////
-
-void setupINTOSC(void) {
-    //Seleccion de Oscilador interno
-    OSCCONbits.SCS = 1;
-
-    // oscilador a 4MHz
+void setup(void)
+{
+    //PUERTO A0 COMO ANALOGICO 
+    ANSELbits.ANS0 = 1;
+    ANSELH = 0;
+   
+    //reloj a 8 MHz
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 0;
+    OSCCONbits.IRCF0 = 1;
     
-    //Pines digitales
-    ANSEL = 0;
-    ANSELH = 0;
+    //reloj interno seleccionado
+    OSCCONbits.SCS = 1;
     
-    //Entradas y salidas 
-    TRISA = 0xFF;                               // Puerto A como entrada
-    TRISDbits.TRISD0 = 0;                          // Pin RD0 como salida
-    TRISDbits.TRISD1 = 0;                          // Pin RD1 como salida
-    TRISDbits.TRISD2 = 0;                          // Pin RD2 como salida
-    TRISDbits.TRISD3 = 0;                          // Pin RD3 como salida
-    PORTD = 0x00;                                // Limpia el puerto D
+    //configuracion del i2c para el esclavo 
+    I2C_Init_Slave(0x50);
     
-    //configuracion del i2c
-    I2C_Init_Slave(0xA0);                       // Inicializa el protocolo I2C en modo esclavo
+    //CONFIGURACION DEL ADC
+    PIR1bits.ADIF = 0;      //flag del adc apagada
+    PIE1bits.ADIE = 1;      //habilitamos el adc
+    
+    ADCON0bits.ADCS1 = 0;   // Fosc/8        
+    ADCON0bits.ADCS0 = 0;         
+    
+    ADCON1bits.VCFG1 = 0;   //Ref VSS 
+    ADCON1bits.VCFG0 = 0;   //Ref VDD
+    
+    ADCON1bits.ADFM = 0;    // hacia izquierda
+    
+    ADCON0bits.CHS3 = 0;    // Canal AN0
+    ADCON0bits.CHS2 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS0 = 0;        
+    
+    ADCON0bits.ADON = 1;    // Habilitamos el ADC
+    __delay_us(100);        //delay de funcionamiento
 }

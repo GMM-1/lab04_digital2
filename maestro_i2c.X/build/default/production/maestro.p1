@@ -1,28 +1,51 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"40 maestro.c
-[; ;maestro.c: 40: void setupINTOSC(void);
-[v _setupINTOSC `(v ~T0 @X0 0 ef ]
-"167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 167: extern volatile unsigned char PORTA __attribute__((address(0x005)));
-[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
-"17 ./i2c.h
-[; ;./i2c.h: 17: void I2C_Start(void);
+"49 maestro.c
+[; ;maestro.c: 49: void setup(void);
+[v _setup `(v ~T0 @X0 0 ef ]
+"55 ./LCD.h
+[; ;./LCD.h: 55: void Lcd_Init(void);
+[v _Lcd_Init `(v ~T0 @X0 0 ef ]
+"53
+[; ;./LCD.h: 53: void Lcd_Set_Cursor(char a, char b);
+[v _Lcd_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"59
+[; ;./LCD.h: 59: void Lcd_Write_String(char *a);
+[v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"23 ./i2c.h
+[; ;./i2c.h: 23: void I2C_Start(void);
 [v _I2C_Start `(v ~T0 @X0 0 ef ]
-"23
-[; ;./i2c.h: 23: short I2C_Write(char data);
+"29
+[; ;./i2c.h: 29: short I2C_Write(char data);
 [v _I2C_Write `(s ~T0 @X0 0 ef1`uc ]
-"18
-[; ;./i2c.h: 18: void I2C_Stop(void);
+"28
+[; ;./i2c.h: 28: unsigned char I2C_Read(void);
+[v _I2C_Read `(uc ~T0 @X0 0 ef ]
+"24
+[; ;./i2c.h: 24: void I2C_Stop(void);
 [v _I2C_Stop `(v ~T0 @X0 0 ef ]
 [v F36 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\builtins.h
 [v __delay `JF36 ~T0 @X0 0 e ]
 [p i __delay ]
-"22 ./i2c.h
-[; ;./i2c.h: 22: unsigned char I2C_Read(void);
-[v _I2C_Read `(uc ~T0 @X0 0 ef ]
-"353 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+"194 C:\Program Files\Microchip\xc8\v2.40\pic\include\c90\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"3388 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3388: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
+[v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
+"3450
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3450: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
+[v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
+"1479
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1479: extern volatile unsigned char TRISB __attribute__((address(0x086)));
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"1603
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1603: extern volatile unsigned char TRISD __attribute__((address(0x088)));
+[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"229
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 229: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"353
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 353: extern volatile unsigned char PORTD __attribute__((address(0x008)));
 [v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "1869
@@ -40,52 +63,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1883
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1883: extern volatile OSCCONbits_t OSCCONbits __attribute__((address(0x08F)));
 [v _OSCCONbits `VS69 ~T0 @X0 0 e@143 ]
-"3388
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3388: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
-[v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
-"3450
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3450: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
-[v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
-"1417
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1417: extern volatile unsigned char TRISA __attribute__((address(0x085)));
-[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
-"1609
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1609:     struct {
-[s S59 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S59 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"1608
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1608: typedef union {
-[u S58 `S59 1 ]
-[n S58 . . ]
-"1620
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1620: extern volatile TRISDbits_t TRISDbits __attribute__((address(0x088)));
-[v _TRISDbits `VS58 ~T0 @X0 0 e@136 ]
-"16 ./i2c.h
-[; ;./i2c.h: 16: void I2C_Init_Master(unsigned char sp_i2c);
+"22 ./i2c.h
+[; ;./i2c.h: 22: void I2C_Init_Master(unsigned char sp_i2c);
 [v _I2C_Init_Master `(v ~T0 @X0 0 ef1`uc ]
-"15 maestro.c
+"14 maestro.c
 [p x FOSC  =  INTRC_NOCLKOUT ]
+"15
+[p x WDTE  =  OFF        ]
 "16
-[p x WDTE  =  OFF         ]
-"17
 [p x PWRTE  =  OFF       ]
+"17
+[p x MCLRE  =  OFF       ]
 "18
-[p x MCLRE  =  OFF        ]
-"19
 [p x CP  =  OFF          ]
-"20
+"19
 [p x CPD  =  OFF         ]
+"20
+[p x BOREN  =  OFF       ]
 "21
-[p x BOREN  =  OFF        ]
+[p x IESO  =  OFF        ]
 "22
-[p x IESO  =  OFF         ]
+[p x FCMEN  =  OFF       ]
 "23
-[p x FCMEN  =  OFF        ]
-"24
-[p x LVP  =  OFF          ]
-"27
+[p x LVP  =  OFF         ]
+"26
 [p x BOR4V  =  BOR40V    ]
-"28
+"27
 [p x WRT  =  OFF         ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 55: __asm("INDF equ 00h");
@@ -321,123 +324,116 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3547
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3547: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"34 maestro.c
-[; ;maestro.c: 34: unsigned char dato_tx;
-[v _dato_tx `uc ~T0 @X0 1 e ]
-"35
-[; ;maestro.c: 35: unsigned char dato_rx;
-[v _dato_rx `uc ~T0 @X0 1 e ]
+"43 maestro.c
+[; ;maestro.c: 43: unsigned char valor_ADC;
+[v _valor_ADC `uc ~T0 @X0 1 e ]
+"44
+[; ;maestro.c: 44: char buffer[20];
+[v _buffer `uc ~T0 @X0 -> 20 `i e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"46
-[; ;maestro.c: 46: void main(void) {
+"54
+[; ;maestro.c: 54: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"47
-[; ;maestro.c: 47:     setupINTOSC();
-[e ( _setupINTOSC ..  ]
-"48
-[; ;maestro.c: 48:     while (1)
-[e :U 140 ]
-"49
-[; ;maestro.c: 49:     {
-{
-"51
-[; ;maestro.c: 51:         dato_tx = PORTA & 0x0F;
-[e = _dato_tx -> & -> _PORTA `i -> 15 `i `uc ]
-"52
-[; ;maestro.c: 52:         I2C_Start();
-[e ( _I2C_Start ..  ]
-"53
-[; ;maestro.c: 53:         I2C_Write(0xA0);
-[e ( _I2C_Write (1 -> -> 160 `i `uc ]
-"54
-[; ;maestro.c: 54:         I2C_Write(dato_tx);
-[e ( _I2C_Write (1 -> _dato_tx `uc ]
 "55
-[; ;maestro.c: 55:         I2C_Stop();
-[e ( _I2C_Stop ..  ]
+[; ;maestro.c: 55:     setup();
+[e ( _setup ..  ]
 "56
-[; ;maestro.c: 56:         _delay((unsigned long)((10)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[; ;maestro.c: 56:     Lcd_Init();
+[e ( _Lcd_Init ..  ]
 "59
-[; ;maestro.c: 59:         I2C_Start();
-[e ( _I2C_Start ..  ]
+[; ;maestro.c: 59:     Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "60
-[; ;maestro.c: 60:         I2C_Write(0xA0 | 1);
-[e ( _I2C_Write (1 -> | -> 160 `i -> 1 `i `uc ]
-"61
-[; ;maestro.c: 61:         dato_rx = I2C_Read();
-[e = _dato_rx ( _I2C_Read ..  ]
+[; ;maestro.c: 60:     Lcd_Write_String("ADC:");
+[e ( _Lcd_Write_String (1 :s 1C ]
 "62
-[; ;maestro.c: 62:         PORTD = dato_rx;
-[e = _PORTD _dato_rx ]
-"63
-[; ;maestro.c: 63:         I2C_Stop();
-[e ( _I2C_Stop ..  ]
-"64
-[; ;maestro.c: 64:         _delay((unsigned long)((10)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"65
-[; ;maestro.c: 65:     }
-}
-[e :U 139 ]
-[e $U 140  ]
+[; ;maestro.c: 62:     while(1)
 [e :U 141 ]
-"66
-[; ;maestro.c: 66:     return;
-[e $UE 138  ]
-"67
-[; ;maestro.c: 67: }
-[e :UE 138 ]
-}
-"73
-[; ;maestro.c: 73: void setupINTOSC(void) {
-[v _setupINTOSC `(v ~T0 @X0 1 ef ]
+"63
+[; ;maestro.c: 63:     {
 {
-[e :U _setupINTOSC ]
-[f ]
-"75
-[; ;maestro.c: 75:     OSCCONbits.SCS = 1;
-[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"78
-[; ;maestro.c: 78:     OSCCONbits.IRCF2 = 1;
-[e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
-"79
-[; ;maestro.c: 79:     OSCCONbits.IRCF1 = 1;
-[e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
-"80
-[; ;maestro.c: 80:     OSCCONbits.IRCF0 = 0;
-[e = . . _OSCCONbits 1 1 -> -> 0 `i `uc ]
-"83
-[; ;maestro.c: 83:     ANSEL = 0;
-[e = _ANSEL -> -> 0 `i `uc ]
-"84
-[; ;maestro.c: 84:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"87
-[; ;maestro.c: 87:     TRISA = 0xFF;
-[e = _TRISA -> -> 255 `i `uc ]
-"88
-[; ;maestro.c: 88:     TRISDbits.TRISD0 = 0;
-[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
-"89
-[; ;maestro.c: 89:     TRISDbits.TRISD1 = 0;
-[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
-"90
-[; ;maestro.c: 90:     TRISDbits.TRISD2 = 0;
-[e = . . _TRISDbits 0 2 -> -> 0 `i `uc ]
-"91
-[; ;maestro.c: 91:     TRISDbits.TRISD3 = 0;
-[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
-"92
-[; ;maestro.c: 92:     PORTD = 0x00;
-[e = _PORTD -> -> 0 `i `uc ]
-"95
-[; ;maestro.c: 95:     I2C_Init_Master(0x80);
-[e ( _I2C_Init_Master (1 -> -> 128 `i `uc ]
-"96
-[; ;maestro.c: 96: }
-[e :UE 142 ]
+"65
+[; ;maestro.c: 65:         I2C_Start();
+[e ( _I2C_Start ..  ]
+"66
+[; ;maestro.c: 66:         I2C_Write(0x51);
+[e ( _I2C_Write (1 -> -> 81 `i `uc ]
+"67
+[; ;maestro.c: 67:         valor_ADC = I2C_Read();
+[e = _valor_ADC ( _I2C_Read ..  ]
+"68
+[; ;maestro.c: 68:         I2C_Stop();
+[e ( _I2C_Stop ..  ]
+"69
+[; ;maestro.c: 69:         _delay((unsigned long)((10)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+"72
+[; ;maestro.c: 72:         Lcd_Set_Cursor(1,5);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 5 `i `uc ]
+"73
+[; ;maestro.c: 73:         sprintf(buffer,"%d ", valor_ADC);
+[e ( _sprintf (1 , (. , &U _buffer :s 2C -> _valor_ADC `i ]
+"74
+[; ;maestro.c: 74:         Lcd_Write_String(buffer);
+[e ( _Lcd_Write_String (1 &U _buffer ]
+"76
+[; ;maestro.c: 76:     }
 }
+[e :U 140 ]
+[e $U 141  ]
+[e :U 142 ]
+"77
+[; ;maestro.c: 77: }
+[e :UE 139 ]
+}
+"81
+[; ;maestro.c: 81: void setup(void)
+[v _setup `(v ~T0 @X0 1 ef ]
+"82
+[; ;maestro.c: 82: {
+{
+[e :U _setup ]
+[f ]
+"84
+[; ;maestro.c: 84:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
+"85
+[; ;maestro.c: 85:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
+"88
+[; ;maestro.c: 88:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
+"89
+[; ;maestro.c: 89:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
+"92
+[; ;maestro.c: 92:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"93
+[; ;maestro.c: 93:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"96
+[; ;maestro.c: 96:     OSCCONbits.IRCF2 = 1;
+[e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
+"97
+[; ;maestro.c: 97:     OSCCONbits.IRCF1 = 1;
+[e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
+"98
+[; ;maestro.c: 98:     OSCCONbits.IRCF0 = 1;
+[e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
+"101
+[; ;maestro.c: 101:     OSCCONbits.SCS = 1;
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+"104
+[; ;maestro.c: 104:     I2C_Init_Master(0x80);
+[e ( _I2C_Init_Master (1 -> -> 128 `i `uc ]
+"105
+[; ;maestro.c: 105: }
+[e :UE 143 ]
+}
+[p f _sprintf 8388736 ]
+[a 1C 65 68 67 58 0 ]
+[a 2C 37 100 32 0 ]

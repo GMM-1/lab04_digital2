@@ -7,7 +7,7 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "esclavo.c" 2
-# 15 "esclavo.c"
+# 14 "esclavo.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -22,6 +22,8 @@
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+
+
 
 
 
@@ -2642,10 +2644,112 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 31 "esclavo.c" 2
+# 32 "esclavo.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdint.h" 1 3
+# 33 "esclavo.c" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 34 "esclavo.c" 2
 
 # 1 "./i2c.h" 1
-# 27 "./i2c.h"
+# 33 "./i2c.h"
 void I2C_Init_Slave(unsigned char add_slave);
 unsigned char I2C_Read_Slave(void);
 void I2C_Write_Slave(char dato_i2c);
@@ -2653,20 +2757,37 @@ void I2C_Error_Data(void);
 short I2C_Write_Mode(void);
 short I2C_Read_Mode(void);
 short I2C_Error_Read(void);
-# 32 "esclavo.c" 2
-
-
-unsigned char dato_tx;
-unsigned char dato_rx;
+# 35 "esclavo.c" 2
 
 
 
 
-void setupINTOSC(void);
 
-void __attribute__((picinterrupt(("")))) INT_I2C()
+
+
+
+unsigned char valor_ADC;
+unsigned char temporal;
+
+
+
+
+void setup(void);
+
+
+
+
+void __attribute__((picinterrupt(("")))) isr(void)
 {
-    if(PIR1bits.SSPIF == 1)
+
+    if (PIR1bits.ADIF == 1)
+    {
+        valor_ADC = ADRESH;
+        PIR1bits.ADIF = 0;
+    }
+
+
+    if (PIR1bits.SSPIF == 1)
     {
         if(I2C_Error_Read() != 0)
         {
@@ -2674,11 +2795,11 @@ void __attribute__((picinterrupt(("")))) INT_I2C()
         }
         if(I2C_Write_Mode() == 1)
         {
-            dato_rx = I2C_Read_Slave();
+            temporal = I2C_Read_Slave();
         }
         if(I2C_Read_Mode() == 1)
         {
-            I2C_Write_Slave(dato_tx);
+            I2C_Write_Slave(valor_ADC);
         }
         PIR1bits.SSPIF = 0;
     }
@@ -2687,42 +2808,55 @@ void __attribute__((picinterrupt(("")))) INT_I2C()
 
 
 
-
-void main(void) {
-    setupINTOSC();
-    while (1)
+void main(void)
+{
+    setup();
+    while(1)
     {
-        PORTD = dato_rx;
-        dato_tx = PORTA & 0x0F;
+        if (ADCON0bits.GO == 0)
+        {
+            ADCON0bits.GO = 1;
+        }
     }
-    return;
 }
 
 
 
 
+void setup(void)
+{
 
-void setupINTOSC(void) {
-
-    OSCCONbits.SCS = 1;
+    ANSELbits.ANS0 = 1;
+    ANSELH = 0;
 
 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 0;
+    OSCCONbits.IRCF0 = 1;
 
 
-    ANSEL = 0;
-    ANSELH = 0;
+    OSCCONbits.SCS = 1;
 
 
-    TRISA = 0xFF;
-    TRISDbits.TRISD0 = 0;
-    TRISDbits.TRISD1 = 0;
-    TRISDbits.TRISD2 = 0;
-    TRISDbits.TRISD3 = 0;
-    PORTD = 0x00;
+    I2C_Init_Slave(0x50);
 
 
-    I2C_Init_Slave(0xA0);
+    PIR1bits.ADIF = 0;
+    PIE1bits.ADIE = 1;
+
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.ADCS0 = 0;
+
+    ADCON1bits.VCFG1 = 0;
+    ADCON1bits.VCFG0 = 0;
+
+    ADCON1bits.ADFM = 0;
+
+    ADCON0bits.CHS3 = 0;
+    ADCON0bits.CHS2 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS0 = 0;
+
+    ADCON0bits.ADON = 1;
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
 }

@@ -14,6 +14,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../maestro_i2c.X</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

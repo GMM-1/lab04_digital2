@@ -8,7 +8,21 @@
 # 2 "<built-in>" 2
 # 1 "i2c.c" 2
 
+
+
+
+
+
+
+
 # 1 "./i2c.h" 1
+
+
+
+
+
+
+
 
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 3
@@ -2627,8 +2641,8 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 3 "./i2c.h" 2
-# 27 "./i2c.h"
+# 10 "./i2c.h" 2
+# 33 "./i2c.h"
 void I2C_Init_Slave(unsigned char add_slave);
 unsigned char I2C_Read_Slave(void);
 void I2C_Write_Slave(char dato_i2c);
@@ -2636,8 +2650,8 @@ void I2C_Error_Data(void);
 short I2C_Write_Mode(void);
 short I2C_Read_Mode(void);
 short I2C_Error_Read(void);
-# 2 "i2c.c" 2
-# 76 "i2c.c"
+# 10 "i2c.c" 2
+# 83 "i2c.c"
 void I2C_Init_Slave(unsigned char add_slave)
 {
     TRISCbits.TRISC3 = 1;

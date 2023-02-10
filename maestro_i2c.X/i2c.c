@@ -1,3 +1,10 @@
+/* #include "i2c.h"
+*
+* Creada por: Ing. Abiezer Hernandez O.
+* Fecha de creacion: 25/11/2019
+* Electronica y Circuitos
+*
+*/
 
 #include "i2c.h"
 
@@ -10,7 +17,7 @@ void I2C_Init_Master(unsigned char sp_i2c)
 	SSPCON = 0x28;
     SSPCON2 = 0x00;
     if(sp_i2c == I2C_100KHZ){
-        SSPADD = 119;
+        SSPADD = 19;
     }
     else if(sp_i2c == I2C_400KHZ){
         SSPADD = 29;

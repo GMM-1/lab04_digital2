@@ -8,7 +8,21 @@
 # 2 "<built-in>" 2
 # 1 "i2c.c" 2
 
+
+
+
+
+
+
+
 # 1 "./i2c.h" 1
+
+
+
+
+
+
+
 
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 3
@@ -2627,8 +2641,8 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 3 "./i2c.h" 2
-# 16 "./i2c.h"
+# 10 "./i2c.h" 2
+# 22 "./i2c.h"
 void I2C_Init_Master(unsigned char sp_i2c);
 void I2C_Start(void);
 void I2C_Stop(void);
@@ -2637,8 +2651,7 @@ void I2C_Ack(void);
 void I2C_Nack(void);
 unsigned char I2C_Read(void);
 short I2C_Write(char data);
-# 2 "i2c.c" 2
-
+# 10 "i2c.c" 2
 
 
 void I2C_Init_Master(unsigned char sp_i2c)
@@ -2649,7 +2662,7 @@ void I2C_Init_Master(unsigned char sp_i2c)
  SSPCON = 0x28;
     SSPCON2 = 0x00;
     if(sp_i2c == 0x80){
-        SSPADD = 119;
+        SSPADD = 19;
     }
     else if(sp_i2c == 0x00){
         SSPADD = 29;
