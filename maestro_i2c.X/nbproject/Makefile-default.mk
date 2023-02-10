@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=maestro.c i2c.c LCD.c
+SOURCEFILES_QUOTED_IF_SPACED=maestro.c i2c.c LCD.c ds3231.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/maestro.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/LCD.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/maestro.p1.d ${OBJECTDIR}/i2c.p1.d ${OBJECTDIR}/LCD.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/maestro.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/LCD.p1 ${OBJECTDIR}/ds3231.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/maestro.p1.d ${OBJECTDIR}/i2c.p1.d ${OBJECTDIR}/LCD.p1.d ${OBJECTDIR}/ds3231.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/maestro.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/LCD.p1
+OBJECTFILES=${OBJECTDIR}/maestro.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/LCD.p1 ${OBJECTDIR}/ds3231.p1
 
 # Source Files
-SOURCEFILES=maestro.c i2c.c LCD.c
+SOURCEFILES=maestro.c i2c.c LCD.c ds3231.c
 
 
 
@@ -118,6 +118,14 @@ ${OBJECTDIR}/LCD.p1: LCD.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/LCD.d ${OBJECTDIR}/LCD.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/LCD.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/ds3231.p1: ds3231.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ds3231.p1.d 
+	@${RM} ${OBJECTDIR}/ds3231.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=none   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/ds3231.p1 ds3231.c 
+	@-${MV} ${OBJECTDIR}/ds3231.d ${OBJECTDIR}/ds3231.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ds3231.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/maestro.p1: maestro.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}" 
@@ -142,6 +150,14 @@ ${OBJECTDIR}/LCD.p1: LCD.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/LCD.p1 LCD.c 
 	@-${MV} ${OBJECTDIR}/LCD.d ${OBJECTDIR}/LCD.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/LCD.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/ds3231.p1: ds3231.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ds3231.p1.d 
+	@${RM} ${OBJECTDIR}/ds3231.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/ds3231.p1 ds3231.c 
+	@-${MV} ${OBJECTDIR}/ds3231.d ${OBJECTDIR}/ds3231.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/ds3231.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

@@ -320,7 +320,14 @@ sprintf(char * sp, const char * f, ...)
 
 
  char c;
-# 521 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+
+ int width;
+
+
+
+
+
+
  signed char prec;
 
 
@@ -350,9 +357,34 @@ sprintf(char * sp, const char * f, ...)
   }
 
 
-
+  width = 0;
 
   flag = 0;
+
+  for(;;) {
+   switch(*f) {
+# 596 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+   case '0':
+    flag |= 0x04;
+    f++;
+    continue;
+
+   }
+   break;
+  }
+# 614 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+  if(isdigit((unsigned)*f)) {
+   width = 0;
+   do {
+    width *= 10;
+       width += *f++ - '0';
+   } while(isdigit((unsigned)*f));
+
+
+
+
+
+  }
 # 661 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
   switch(c = *f++) {
 
@@ -362,13 +394,62 @@ sprintf(char * sp, const char * f, ...)
   case 'd':
   case 'i':
    break;
+# 754 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+  case 's':
+
+
+
+
+
+    cp = (*(const char * *)__va_arg((*(const char * **)ap), (const char *)0));
+
+
+
+
+
+   if(!cp)
+    cp = "(null)";
+
+
+
+   len = 0;
+   while(cp[len])
+    len++;
+# 783 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+   if(((unsigned)width) > len)
+    width -= len;
+   else
+    width = 0;
+
+
+
+    while(width--)
+     ((*sp++ = (' ')));
+
+   while(len--)
+    ((*sp++ = (*cp++)));
+
+
+
+
+
+   continue;
 # 828 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
   default:
 # 839 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
    continue;
-# 848 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+
+
+
+  case 'u':
+   flag |= 0x40;
+   break;
+
+
   }
-# 1279 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+# 1277 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+  if((flag & 0x40) == 0x00)
+
   {
 
 
@@ -383,13 +464,61 @@ sprintf(char * sp, const char * f, ...)
    }
 
   }
+
+  else
+
+
+
+
+  {
+# 1312 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+    val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
+  }
 # 1331 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
    for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
     if(val < dpowers[c])
      break;
-# 1448 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+# 1371 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+  if(width && flag & 0x03)
+   width--;
+# 1407 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+  if(width > c)
+   width -= c;
+  else
+   width = 0;
+
+
+  if(flag & 0x04) {
+
+
+
+
+   if(flag & 0x03)
+    ((*sp++ = ('-')));
+# 1441 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+   if(width)
+    do
+     ((*sp++ = ('0')));
+    while(--width);
+
+  } else
+
   {
-# 1464 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
+
+   if(width
+
+
+
+     )
+    do
+     ((*sp++ = (' ')));
+    while(--width);
+
+
+
+
+
+
    if(flag & 0x03)
     ((*sp++ = ('-')));
 # 1495 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"

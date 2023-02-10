@@ -32,21 +32,35 @@ creado: 08/02/2023
 #include <xc.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "LCD.h" //lIBRERIA LCD
-#include "i2c.h" //LIBRERIA I2C
+#include "LCD.h"    //lIBRERIA LCD
+#include "i2c.h"    //LIBRERIA I2C
+#include "ds3231.h" //LIBRERIA RELOJ
 
 #define _XTAL_FREQ 8000000 //Frecuencia 8MHz
 
 ////////////////////////////////////////////////////////////////////////////////
 //VARIABLES
 ////////////////////////////////////////////////////////////////////////////////
-unsigned char valor_ADC;
-char buffer[20];
+unsigned char valor_ADC; //guarda el valor del ADC
+
+char buffer[20];         //buffer para guardar la cadena de la LCD
+
+int8_t selector = 0;     //selecciona el modo de configuracion
+
+//variables para guardar los datos del sensor
+int8_t dia;
+int8_t mes;
+int8_t ano; 
+int8_t dow;
+int8_t horas;
+int8_t minutos;
+int8_t segundos;
 
 ////////////////////////////////////////////////////////////////////////////////
 //DECLARACION DE FUNCIONES
 ////////////////////////////////////////////////////////////////////////////////
 void setup(void);
+void CLK_CONFIG (void);
 
 ////////////////////////////////////////////////////////////////////////////////
 //CODIGO PRINCIPAL 
@@ -54,10 +68,6 @@ void setup(void);
 void main(void) {
     setup();                    //setup del reloj, puertos y modulos
     Lcd_Init();                 //inicializacion de la LCD
-    
-    //MENSAJE FIJO
-    Lcd_Set_Cursor(1,1);
-    Lcd_Write_String("ADC:");
     
     while(1)
     {
@@ -68,10 +78,15 @@ void main(void) {
         I2C_Stop();               //TERMINAMOS LA COMUNICACION            
         __delay_us(10);           //DELAY DE FUNCIONAMIENTO 
         
-        //MENSAJE VARIABLE 
-        Lcd_Set_Cursor(1,5);
-        sprintf(buffer,"%d ", valor_ADC); //escribimos en la LCD el valor del ADC
-        Lcd_Write_String(buffer);
+          if(PORTAbits.RA0 == 1) // verificamos que el PB de cambio de estado este presionado
+        {
+            while(PORTAbits.RA0 == 1);
+            __delay_ms(20);      //antirebotes
+            Lcd_Clear();        //limpiamos la pantalla
+            selector++;         //incrementamos el selector 
+        }
+        
+        CLK_CONFIG();
         
     }
 }
@@ -81,16 +96,20 @@ void main(void) {
 void setup(void)
 {
     //PUERTOS DIGITALES 
-    ANSEL = 0;
+    //ANSEL = 0;
     ANSELH = 0;
     
     //CONFIGURACION DE SALIDAS
     TRISB = 0; 
     TRISD = 0;
     
+    //CONFIGURACION DE ENTRADAS
+    TRISA = 1; 
+    
     //REINICIO DE PUERTOS
     PORTB = 0;
     PORTD = 0;
+    PORTA = 0;
     
     //FRECUENCIA DE TRABAJO A 8MHz
     OSCCONbits.IRCF2 = 1;
@@ -102,4 +121,207 @@ void setup(void)
     
     //CONFIGURACION DEL I2C PARA EL MAESTRO
     I2C_Init_Master(I2C_100KHZ);
+}
+
+void CLK_CONFIG (void)
+{
+    //primer caso: fin de la configuracion/ despliegue
+    if(selector == 0)
+    {
+        //recibimos los datos del sensor y los colocamos en variables 
+        DS3231_Get_Date((uint8_t)&dia, (uint8_t)&mes, (uint8_t)&ano, (uint8_t)&dow);
+        DS3231_Get_Time((uint8_t)&horas, (uint8_t)&minutos, (uint8_t)&segundos);
+        
+        //MENSAJES A ESCRIBIR:
+        
+        //escritura del valor del ADC
+        Lcd_Set_Cursor(1,1);
+        Lcd_Write_String("ADC:");
+        Lcd_Set_Cursor(2,1);
+        sprintf(buffer,"%d ", valor_ADC); //escribimos en la LCD el valor del ADC
+        Lcd_Write_String(buffer);
+        
+        //escritura de la hora
+        sprintf(buffer, "%02u:%02u:%02u", horas, minutos, segundos);
+        Lcd_Set_Cursor(1,8);
+        Lcd_Write_String(buffer);
+        __delay_ms(200);
+        
+        //escritura de la fecha
+        sprintf(buffer, "%02u/%02u/20%02u", dia, mes, ano);
+        Lcd_Set_Cursor(2,6);
+        Lcd_Write_String(buffer);
+    }
+    if(selector == 1)
+    {
+      Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "Dia: %02u", dia);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    dia++;
+                    if(dia > 31){
+                        dia = 31;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    dia--;
+                    if(dia < 1){
+                        dia = 1;
+                    }
+                }
+    }
+    if(selector == 2)
+    {
+    Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "Mes: %02u", mes);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    mes++;
+                    if(mes > 12){
+                        mes = 12;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    mes--;
+                    if(mes < 1){
+                        mes = 1;
+                    }
+                }
+    }
+    if (selector == 3)
+    {
+     Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "ANO: %02u", ano);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    ano++;
+                    if(ano > 99){
+                        ano = 99;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    ano--;
+                    if(ano == -1){
+                        ano = 0;
+                    }
+                }
+    }
+    if (selector == 4)
+    {
+       Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "Dia semana: %u", dow);
+                Lcd_Write_String(buffer);
+                Lcd_Set_Cursor(2,1);
+                sprintf(buffer, "%s    ", dw[dow]);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    dow++;
+                    if(dow > 6){
+                        dow = 6;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    dow--;
+                    if(dow == -1){
+                        dow = 0;
+                    }
+                }
+    }
+    if(selector == 5)
+    {
+       Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "Hora: %02u", horas);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    horas++;
+                    if(horas > 23){
+                        horas = 23;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    horas--;
+                    if(horas == -1){
+                        horas = 0;
+                    }
+                }
+    }
+    if (selector == 6)
+    {
+     Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "minutosuto: %02u", minutos);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    minutos++;
+                    if(minutos > 59){
+                        minutos = 59;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    minutos--;
+                    if(minutos == -1){
+                        minutos = 0;
+                    }
+                }   
+    }
+    if (selector == 7)
+    {
+     Lcd_Set_Cursor(1,1);
+                sprintf(buffer, "Segundo: %02u", segundos);
+                Lcd_Write_String(buffer);
+                if(PORTAbits.RA1 == 1)
+                {
+                    while(PORTAbits.RA1 == 1);
+                    __delay_ms(20);
+                    segundos++;
+                    if(segundos > 59){
+                        segundos = 59;
+                    }
+                }
+                if(PORTAbits.RA2 == 1)
+                {
+                    while(PORTAbits.RA2 == 1);
+                    __delay_ms(20);
+                    segundos--;
+                    if(segundos == -1){
+                        segundos = 0;
+                    }
+                }
+    }
+    
 }
