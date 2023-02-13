@@ -7,7 +7,7 @@ compilador: XC8
 proyecto: laboratorio 04
 hardware: PIC 16F887
 creado: 08/02/2023
-última modificación: 
+última modificación: 12/02/2023
 ********************************************************************************
  */
 // CONFIG1
@@ -41,12 +41,10 @@ creado: 08/02/2023
 ////////////////////////////////////////////////////////////////////////////////
 //VARIABLES
 ////////////////////////////////////////////////////////////////////////////////
+
 unsigned char valor_ADC; //guarda el valor del ADC
-
 char buffer[20];         //buffer para guardar la cadena de la LCD
-
 int8_t selector = 0;     //selecciona el modo de configuracion
-
 //variables para guardar los datos del sensor
 int8_t dia;
 int8_t mes;
@@ -65,9 +63,11 @@ void CLK_CONFIG (void);
 ////////////////////////////////////////////////////////////////////////////////
 //CODIGO PRINCIPAL 
 ////////////////////////////////////////////////////////////////////////////////
-void main(void) {
-    setup();                    //setup del reloj, puertos y modulos
-    while(1){
+void main(void) 
+{
+    setup();                      //setup del reloj, puertos y modulos
+    while(1)
+    {
         //RECEPCION DE VALORES CON I2C
         I2C_Start();              //INICIAMOS LA COMUNICACION
         I2C_Write(0x51);          //SELECCIONAMOS RECEPCION DE DATOS
@@ -82,8 +82,7 @@ void main(void) {
             Lcd_Clear();        //limpiamos la pantalla
             selector++;         //incrementamos el selector 
         }
-        
-        CLK_CONFIG();
+        CLK_CONFIG();           //rutina para seleccion de valores del reloj
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,9 +94,9 @@ void setup(void)
     ANSEL = 0;
     ANSELH = 0;
     
-    TRISAbits.TRISA0 = 1;                             // Pin RA0 como entrada
-    TRISAbits.TRISA1 = 1;                             // Pin RA1 como entrada
-    TRISAbits.TRISA2 = 1;                             // Pin RA2 como entrada
+    TRISAbits.TRISA0 = 1;                 // Pin RA0 como entrada
+    TRISAbits.TRISA1 = 1;                 // Pin RA1 como entrada
+    TRISAbits.TRISA2 = 1;                 // Pin RA2 como entrada
 
     //CONFIGURACION DE SALIDAS
     TRISB = 0;
@@ -128,16 +127,19 @@ void CLK_CONFIG (void)
 {
     switch(selector)
         {
-            case 0:
+            case 0: //cuando no se esta configurando ningun parametro
+                //coloca los datos del reloj en variables 
                 DS3231_Get_Date((uint8_t)&dia, (uint8_t)&mes, (uint8_t)&ano, (uint8_t)&dow);
                 DS3231_Get_Time((uint8_t)&horas, (uint8_t)&minutos, (uint8_t)&segundos);
                 
+                //escribe el valor del adc en el display 
                 Lcd_Set_Cursor(1,1);
                 Lcd_Write_String("ADC: ");
                 sprintf(buffer, "%u ", valor_ADC);
                 Lcd_Set_Cursor(2,1);
                 Lcd_Write_String(buffer);
 
+                //escribe la fecha y hora en la LCD
                 sprintf(buffer, "%02u/%02u/20%02u", dia, mes, ano);
                 Lcd_Set_Cursor(1,6);
                 Lcd_Write_String(buffer);
@@ -147,10 +149,14 @@ void CLK_CONFIG (void)
                 __delay_ms(200);
                 break;
 
-            case 1:
+            case 1:  //selector de dia 
+                
+                //mensaje del selector 
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Dia: %02u", dia);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento 
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -160,6 +166,8 @@ void CLK_CONFIG (void)
                         dia = 31;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -171,10 +179,14 @@ void CLK_CONFIG (void)
                 }
                 break;
 
-            case 2:
+            case 2:  //selector de mes 
+                
+                //mensaje del selector 
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Mes: %02u", mes);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -184,6 +196,8 @@ void CLK_CONFIG (void)
                         mes = 12;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -195,10 +209,14 @@ void CLK_CONFIG (void)
                 }
                 break;
 
-            case 3:
+            case 3:  //selector de ano
+                
+                //mensaje del selector 
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "ANO: %02u", ano);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento 
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -208,6 +226,8 @@ void CLK_CONFIG (void)
                         ano = 99;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -219,13 +239,17 @@ void CLK_CONFIG (void)
                 }
                 break;
 
-            case 4:
+            case 4:  //selector de dia de la semana 
+                
+                //mensaje del selector 
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Dia semana: %u", dow);
                 Lcd_Write_String(buffer);
                 Lcd_Set_Cursor(2,1);
                 sprintf(buffer, "%s    ", dw[dow]);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento 
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -235,6 +259,8 @@ void CLK_CONFIG (void)
                         dow = 6;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -246,10 +272,14 @@ void CLK_CONFIG (void)
                 }
                 break;
 
-            case 5:
+            case 5:  //selector de hora 
+                
+                //mensaje del selector
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Hora: %02u", horas);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento 
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -259,6 +289,8 @@ void CLK_CONFIG (void)
                         horas = 23;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -270,10 +302,14 @@ void CLK_CONFIG (void)
                 }
                 break;
 
-            case 6:
+            case 6:  //selector de minutos
+                
+                //mensaje del selector
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "minutosuto: %02u", minutos);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -283,6 +319,8 @@ void CLK_CONFIG (void)
                         minutos = 59;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -294,10 +332,14 @@ void CLK_CONFIG (void)
                 }
                 break;
 
-            case 7:
+            case 7:  //selector de segundos 
+                
+                //mensaje del selector 
                 Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Segundo: %02u", segundos);
                 Lcd_Write_String(buffer);
+                
+                //push button de incremento 
                 if(PORTAbits.RA1 == 1)
                 {
                     while(PORTAbits.RA1 == 1);
@@ -307,6 +349,8 @@ void CLK_CONFIG (void)
                         segundos = 59;
                     }
                 }
+                
+                //push button de decremento 
                 if(PORTAbits.RA2 == 1)
                 {
                     while(PORTAbits.RA2 == 1);
@@ -318,6 +362,9 @@ void CLK_CONFIG (void)
                 }
                 break;
 
+            /* cuando no se este realizando ninguna de las anteriores se pone
+             el default que es el guardado de las variables y el valor 
+             del selector en 0, es decir, desplegado en la LCD*/
             default:
             	dia = (uint8_t)dia;
             	mes = (uint8_t)mes;
