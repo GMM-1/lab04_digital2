@@ -390,10 +390,6 @@ sprintf(char * sp, const char * f, ...)
 
   case 0:
    goto alldone;
-# 723 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
-  case 'd':
-  case 'i':
-   break;
 # 754 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
   case 's':
 
@@ -442,34 +438,12 @@ sprintf(char * sp, const char * f, ...)
 
 
   case 'u':
-   flag |= 0x40;
+   flag |= 0xC0;
    break;
 
 
   }
-# 1277 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
-  if((flag & 0x40) == 0x00)
-
-  {
-
-
-
-
-
-    val = (unsigned int)(*(int *)__va_arg((*(int **)ap), (int)0));
-
-   if((int)val < 0) {
-    flag |= 0x03;
-    val = -val;
-   }
-
-  }
-
-  else
-
-
-
-
+# 1299 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
   {
 # 1312 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
     val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
@@ -478,9 +452,6 @@ sprintf(char * sp, const char * f, ...)
    for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
     if(val < dpowers[c])
      break;
-# 1371 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
-  if(width && flag & 0x03)
-   width--;
 # 1407 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
   if(width > c)
    width -= c;
@@ -489,12 +460,6 @@ sprintf(char * sp, const char * f, ...)
 
 
   if(flag & 0x04) {
-
-
-
-
-   if(flag & 0x03)
-    ((*sp++ = ('-')));
 # 1441 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
    if(width)
     do
@@ -513,14 +478,6 @@ sprintf(char * sp, const char * f, ...)
     do
      ((*sp++ = (' ')));
     while(--width);
-
-
-
-
-
-
-   if(flag & 0x03)
-    ((*sp++ = ('-')));
 # 1495 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\sources\\c90\\common\\doprnt.c"
   }
 

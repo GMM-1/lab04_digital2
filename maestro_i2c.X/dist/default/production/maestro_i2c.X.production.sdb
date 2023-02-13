@@ -23,7 +23,9 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"28 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\ds3231.c
+"11 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\ds3231.c
+[v _DS3231_Set_Date_Time DS3231_Set_Date_Time `(v  1 e 1 0 ]
+"28
 [v _DS3231_Get_Date DS3231_Get_Date `(v  1 e 1 0 ]
 "36
 [v _DS3231_Get_Time DS3231_Get_Time `(v  1 e 1 0 ]
@@ -63,15 +65,15 @@
 [v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
 "68 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\maestro.c
 [v _main main `(v  1 e 1 0 ]
-"96
+"92
 [v _setup setup `(v  1 e 1 0 ]
-"126
+"127
 [v _CLK_CONFIG CLK_CONFIG `(v  1 e 1 0 ]
 "26 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X/ds3231.h
 [v _dw dw `[7][11]uc  1 e 77 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
-[s S53 . 1 `uc 1 RA0 1 0 :1:0 
+[s S49 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -81,11 +83,11 @@
 `uc 1 RA7 1 0 :1:7 
 ]
 "184
-[u S62 . 1 `S53 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES62  1 e 1 @5 ]
+[u S58 . 1 `S49 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES58  1 e 1 @5 ]
 "229
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S301 . 1 `uc 1 RB0 1 0 :1:0 
+[s S341 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -95,11 +97,11 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "246
-[u S310 . 1 `S301 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES310  1 e 1 @6 ]
+[u S350 . 1 `S341 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES350  1 e 1 @6 ]
 "353
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
-[s S322 . 1 `uc 1 RD0 1 0 :1:0 
+[s S362 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -109,9 +111,9 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "370
-[u S331 . 1 `S322 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES331  1 e 1 @8 ]
-[s S247 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S371 . 1 `S362 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES371  1 e 1 @8 ]
+[s S287 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -120,17 +122,27 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "554
-[u S255 . 1 `S247 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES255  1 e 1 @12 ]
+[u S295 . 1 `S287 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES295  1 e 1 @12 ]
 "844
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "851
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-"1417
-[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+[s S80 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"1434
+[u S89 . 1 `S80 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES89  1 e 1 @133 ]
 "1479
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S201 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S241 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -140,27 +152,27 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1558
-[u S210 . 1 `S201 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES210  1 e 1 @135 ]
+[u S250 . 1 `S241 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES250  1 e 1 @135 ]
 "1603
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S89 . 1 `uc 1 SCS 1 0 :1:0 
+[s S106 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1883
-[s S95 . 1 `uc 1 . 1 0 :4:0 
+[s S112 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S100 . 1 `S89 1 . 1 0 `S95 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES100  1 e 1 @143 ]
+[u S117 . 1 `S106 1 . 1 0 `S112 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES117  1 e 1 @143 ]
 "1980
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S226 . 1 `uc 1 SEN 1 0 :1:0 
+[s S266 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -170,12 +182,14 @@
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1997
-[u S235 . 1 `S226 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES235  1 e 1 @145 ]
+[u S275 . 1 `S266 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES275  1 e 1 @145 ]
 "2049
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2178
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+"3388
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3450
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "358 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\doprnt.c
@@ -203,12 +217,17 @@
 "68
 [v _main main `(v  1 e 1 0 ]
 {
-"92
+"88
 } 0
-"96
+"92
 [v _setup setup `(v  1 e 1 0 ]
 {
-"124
+"125
+} 0
+"65 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\LCD.c
+[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
+{
+"81
 } 0
 "12 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\i2c.c
 [v _I2C_Init_Master I2C_Init_Master `(v  1 e 1 0 ]
@@ -219,41 +238,36 @@
 [v I2C_Init_Master@sp_i2c sp_i2c `uc  1 a 1 0 ]
 "25
 } 0
-"65 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\LCD.c
-[v _Lcd_Init Lcd_Init `(v  1 e 1 0 ]
-{
-"81
-} 0
-"43
+"43 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\LCD.c
 [v _Lcd_Clear Lcd_Clear `(v  1 e 1 0 ]
 {
 "46
 } 0
-"126 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\maestro.c
+"127 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\maestro.c
 [v _CLK_CONFIG CLK_CONFIG `(v  1 e 1 0 ]
 {
-"327
+"333
 } 0
 "505 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c90\common\doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
 [v sprintf@sp sp `*.4uc  1 a 1 wreg ]
 "514
-[v sprintf@width width `i  1 a 2 20 ]
-"545
-[v sprintf@val val `ui  1 a 2 16 ]
+[v sprintf@width width `i  1 a 2 19 ]
 "546
-[v sprintf@len len `ui  1 a 2 14 ]
+[v sprintf@len len `ui  1 a 2 17 ]
 "547
-[v sprintf@cp cp `*.26DCuc  1 a 2 11 ]
+[v sprintf@cp cp `*.26DCuc  1 a 2 15 ]
+"545
+[v sprintf@val val `ui  1 a 2 11 ]
 "512
-[v sprintf@c c `uc  1 a 1 19 ]
-"525
-[v sprintf@flag flag `uc  1 a 1 18 ]
+[v sprintf@c c `uc  1 a 1 21 ]
 "507
-[v sprintf@ap ap `[1]*.4v  1 a 1 13 ]
+[v sprintf@ap ap `[1]*.4v  1 a 1 14 ]
 "521
-[v sprintf@prec prec `c  1 a 1 10 ]
+[v sprintf@prec prec `c  1 a 1 13 ]
+"525
+[v sprintf@flag flag `uc  1 a 1 10 ]
 "505
 [v sprintf@sp sp `*.4uc  1 a 1 wreg ]
 [v sprintf@f f `*.24DCuc  1 p 1 0 ]
@@ -368,7 +382,36 @@
 [v Lcd_Port@a a `uc  1 a 1 0 ]
 "33
 } 0
-"36 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\ds3231.c
+"11 C:\Users\gaban\OneDrive\Documentos\GitHub\lab04_digital2\maestro_i2c.X\ds3231.c
+[v _DS3231_Set_Date_Time DS3231_Set_Date_Time `(v  1 e 1 0 ]
+{
+[v DS3231_Set_Date_Time@dy dy `uc  1 a 1 wreg ]
+[v DS3231_Set_Date_Time@dy dy `uc  1 a 1 wreg ]
+[v DS3231_Set_Date_Time@mth mth `uc  1 p 1 4 ]
+[v DS3231_Set_Date_Time@yr yr `uc  1 p 1 5 ]
+[v DS3231_Set_Date_Time@dw dw `uc  1 p 1 6 ]
+[v DS3231_Set_Date_Time@hr hr `uc  1 p 1 7 ]
+[v DS3231_Set_Date_Time@mn mn `uc  1 p 1 8 ]
+[v DS3231_Set_Date_Time@sc sc `uc  1 p 1 9 ]
+"13
+[v DS3231_Set_Date_Time@dy dy `uc  1 a 1 11 ]
+"26
+} 0
+"67
+[v _DS3231_Bin_Bcd DS3231_Bin_Bcd `(uc  1 e 1 0 ]
+{
+[v DS3231_Bin_Bcd@binary_value binary_value `uc  1 a 1 wreg ]
+"69
+[v DS3231_Bin_Bcd@temp temp `uc  1 a 1 3 ]
+"70
+[v DS3231_Bin_Bcd@retval retval `uc  1 a 1 2 ]
+"67
+[v DS3231_Bin_Bcd@binary_value binary_value `uc  1 a 1 wreg ]
+"71
+[v DS3231_Bin_Bcd@binary_value binary_value `uc  1 a 1 1 ]
+"84
+} 0
+"36
 [v _DS3231_Get_Time DS3231_Get_Time `(v  1 e 1 0 ]
 {
 [v DS3231_Get_Time@hr hr `*.39uc  1 p 2 4 ]

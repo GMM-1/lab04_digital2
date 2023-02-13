@@ -27,6 +27,8 @@
 
 
 
+
+
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2644,10 +2646,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\\pic\\include\\xc.h" 2 3
-# 32 "maestro.c" 2
+# 34 "maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdint.h" 1 3
-# 33 "maestro.c" 2
+# 35 "maestro.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2746,7 +2748,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 34 "maestro.c" 2
+# 36 "maestro.c" 2
 
 # 1 "./LCD.h" 1
 # 47 "./LCD.h"
@@ -2767,7 +2769,7 @@ void Lcd_Write_String(char *a);
 void Lcd_Shift_Right(void);
 
 void Lcd_Shift_Left(void);
-# 35 "maestro.c" 2
+# 37 "maestro.c" 2
 
 # 1 "./i2c.h" 1
 # 22 "./i2c.h"
@@ -2779,7 +2781,7 @@ void I2C_Ack(void);
 void I2C_Nack(void);
 unsigned char I2C_Read(void);
 short I2C_Write(char data);
-# 36 "maestro.c" 2
+# 38 "maestro.c" 2
 
 # 1 "./ds3231.h" 1
 # 12 "./ds3231.h"
@@ -2808,9 +2810,7 @@ void DS3231_Get_DayOfWeek(char* str);
 uint8_t DS3231_Read(uint8_t reg);
 uint8_t DS3231_Bin_Bcd(uint8_t binary_value);
 uint8_t DS3231_Bcd_Bin(uint8_t bcd_value);
-# 37 "maestro.c" 2
-
-
+# 39 "maestro.c" 2
 
 
 
@@ -2842,10 +2842,7 @@ void CLK_CONFIG (void);
 
 void main(void) {
     setup();
-    Lcd_Init();
-
-    while(1)
-    {
+    while(1){
 
         I2C_Start();
         I2C_Write(0x51);
@@ -2862,7 +2859,6 @@ void main(void) {
         }
 
         CLK_CONFIG();
-
     }
 }
 
@@ -2871,15 +2867,16 @@ void main(void) {
 void setup(void)
 {
 
-
+    ANSEL = 0;
     ANSELH = 0;
+
+    TRISAbits.TRISA0 = 1;
+    TRISAbits.TRISA1 = 1;
+    TRISAbits.TRISA2 = 1;
 
 
     TRISB = 0;
     TRISD = 0;
-
-
-    TRISA = 1;
 
 
     PORTB = 0;
@@ -2895,41 +2892,38 @@ void setup(void)
     OSCCONbits.SCS = 1;
 
 
+     Lcd_Init();
+
+
     I2C_Init_Master(0x80);
+
 }
 
 void CLK_CONFIG (void)
 {
+    switch(selector)
+        {
+            case 0:
+                DS3231_Get_Date((uint8_t)&dia, (uint8_t)&mes, (uint8_t)&ano, (uint8_t)&dow);
+                DS3231_Get_Time((uint8_t)&horas, (uint8_t)&minutos, (uint8_t)&segundos);
 
-    if(selector == 0)
-    {
+                Lcd_Set_Cursor(1,1);
+                Lcd_Write_String("ADC: ");
+                sprintf(buffer, "%u ", valor_ADC);
+                Lcd_Set_Cursor(2,1);
+                Lcd_Write_String(buffer);
 
-        DS3231_Get_Date((uint8_t)&dia, (uint8_t)&mes, (uint8_t)&ano, (uint8_t)&dow);
-        DS3231_Get_Time((uint8_t)&horas, (uint8_t)&minutos, (uint8_t)&segundos);
+                sprintf(buffer, "%02u/%02u/20%02u", dia, mes, ano);
+                Lcd_Set_Cursor(1,6);
+                Lcd_Write_String(buffer);
+                sprintf(buffer, "%02u:%02u:%02u", horas, minutos, segundos);
+                Lcd_Set_Cursor(2,8);
+                Lcd_Write_String(buffer);
+                _delay((unsigned long)((200)*(8000000/4000.0)));
+                break;
 
-
-
-
-        Lcd_Set_Cursor(1,1);
-        Lcd_Write_String("ADC:");
-        Lcd_Set_Cursor(2,1);
-        sprintf(buffer,"%d ", valor_ADC);
-        Lcd_Write_String(buffer);
-
-
-        sprintf(buffer, "%02u:%02u:%02u", horas, minutos, segundos);
-        Lcd_Set_Cursor(1,8);
-        Lcd_Write_String(buffer);
-        _delay((unsigned long)((200)*(8000000/4000.0)));
-
-
-        sprintf(buffer, "%02u/%02u/20%02u", dia, mes, ano);
-        Lcd_Set_Cursor(2,6);
-        Lcd_Write_String(buffer);
-    }
-    if(selector == 1)
-    {
-      Lcd_Set_Cursor(1,1);
+            case 1:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Dia: %02u", dia);
                 Lcd_Write_String(buffer);
                 if(PORTAbits.RA1 == 1)
@@ -2950,10 +2944,10 @@ void CLK_CONFIG (void)
                         dia = 1;
                     }
                 }
-    }
-    if(selector == 2)
-    {
-    Lcd_Set_Cursor(1,1);
+                break;
+
+            case 2:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Mes: %02u", mes);
                 Lcd_Write_String(buffer);
                 if(PORTAbits.RA1 == 1)
@@ -2974,10 +2968,10 @@ void CLK_CONFIG (void)
                         mes = 1;
                     }
                 }
-    }
-    if (selector == 3)
-    {
-     Lcd_Set_Cursor(1,1);
+                break;
+
+            case 3:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "ANO: %02u", ano);
                 Lcd_Write_String(buffer);
                 if(PORTAbits.RA1 == 1)
@@ -2998,10 +2992,10 @@ void CLK_CONFIG (void)
                         ano = 0;
                     }
                 }
-    }
-    if (selector == 4)
-    {
-       Lcd_Set_Cursor(1,1);
+                break;
+
+            case 4:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Dia semana: %u", dow);
                 Lcd_Write_String(buffer);
                 Lcd_Set_Cursor(2,1);
@@ -3025,10 +3019,10 @@ void CLK_CONFIG (void)
                         dow = 0;
                     }
                 }
-    }
-    if(selector == 5)
-    {
-       Lcd_Set_Cursor(1,1);
+                break;
+
+            case 5:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Hora: %02u", horas);
                 Lcd_Write_String(buffer);
                 if(PORTAbits.RA1 == 1)
@@ -3049,10 +3043,10 @@ void CLK_CONFIG (void)
                         horas = 0;
                     }
                 }
-    }
-    if (selector == 6)
-    {
-     Lcd_Set_Cursor(1,1);
+                break;
+
+            case 6:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "minutosuto: %02u", minutos);
                 Lcd_Write_String(buffer);
                 if(PORTAbits.RA1 == 1)
@@ -3073,10 +3067,10 @@ void CLK_CONFIG (void)
                         minutos = 0;
                     }
                 }
-    }
-    if (selector == 7)
-    {
-     Lcd_Set_Cursor(1,1);
+                break;
+
+            case 7:
+                Lcd_Set_Cursor(1,1);
                 sprintf(buffer, "Segundo: %02u", segundos);
                 Lcd_Write_String(buffer);
                 if(PORTAbits.RA1 == 1)
@@ -3097,6 +3091,18 @@ void CLK_CONFIG (void)
                         segundos = 0;
                     }
                 }
-    }
+                break;
 
+            default:
+             dia = (uint8_t)dia;
+             mes = (uint8_t)mes;
+             ano = (uint8_t)ano;
+             dow = (uint8_t)dow;
+             horas = (uint8_t)horas;
+             minutos = (uint8_t)minutos;
+             segundos = (uint8_t)segundos;
+                DS3231_Set_Date_Time(dia,mes,ano,dow,horas,minutos,segundos);
+                selector = 0;
+                break;
+        }
 }

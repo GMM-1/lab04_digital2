@@ -3,9 +3,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "62 maestro.c
 [; ;maestro.c: 62: void setup(void);
 [v _setup `(v ~T0 @X0 0 ef ]
-"55 ./LCD.h
-[; ;./LCD.h: 55: void Lcd_Init(void);
-[v _Lcd_Init `(v ~T0 @X0 0 ef ]
 "23 ./i2c.h
 [; ;./i2c.h: 23: void I2C_Start(void);
 [; ;./i2c.h: 23: void I2C_Start(void);
@@ -43,18 +40,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "63 maestro.c
 [; ;maestro.c: 63: void CLK_CONFIG (void);
 [v _CLK_CONFIG `(v ~T0 @X0 0 ef ]
-"3450 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+"3388 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3388: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
+[v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
+"3450
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3450: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
 [v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
+"1423
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1423:     struct {
+[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S53 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"1422
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1422: typedef union {
+[u S52 `S53 1 ]
+[n S52 . . ]
+"1434
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1434: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x085)));
+[v _TRISAbits `VS52 ~T0 @X0 0 e@133 ]
 "1479
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1479: extern volatile unsigned char TRISB __attribute__((address(0x086)));
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
 "1603
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1603: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"1417
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1417: extern volatile unsigned char TRISA __attribute__((address(0x085)));
-[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
 "229
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 229: extern volatile unsigned char PORTB __attribute__((address(0x006)));
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
@@ -79,6 +87,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1883
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1883: extern volatile OSCCONbits_t OSCCONbits __attribute__((address(0x08F)));
 [v _OSCCONbits `VS69 ~T0 @X0 0 e@143 ]
+"55 ./LCD.h
+[; ;./LCD.h: 55: void Lcd_Init(void);
+[v _Lcd_Init `(v ~T0 @X0 0 ef ]
 "22 ./i2c.h
 [; ;./i2c.h: 22: void I2C_Init_Master(unsigned char sp_i2c);
 [; ;./i2c.h: 22: void I2C_Init_Master(unsigned char sp_i2c);
@@ -97,6 +108,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _Lcd_Write_String `(v ~T0 @X0 0 ef1`*uc ]
 "194 C:\Program Files\Microchip\xc8\v2.40\pic\include\c90\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"28 ./ds3231.h
+[; ;./ds3231.h: 28: void DS3231_Set_Date_Time(uint8_t dy, uint8_t mth, uint8_t yr, uint8_t dw, uint8_t hr, uint8_t mn, uint8_t sc);
+[v _DS3231_Set_Date_Time `(v ~T0 @X0 0 ef7`uc`uc`uc`uc`uc`uc`uc ]
 "14 maestro.c
 [p x FOSC  =  INTRC_NOCLKOUT ]
 "15
@@ -481,79 +495,86 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;maestro.c: 69:     setup();
 [e ( _setup ..  ]
 "70
-[; ;maestro.c: 70:     Lcd_Init();
-[e ( _Lcd_Init ..  ]
-"72
-[; ;maestro.c: 72:     while(1)
+[; ;maestro.c: 70:     while(1){
 [e :U 141 ]
-"73
-[; ;maestro.c: 73:     {
 {
-"75
-[; ;maestro.c: 75:         I2C_Start();
+"72
+[; ;maestro.c: 72:         I2C_Start();
 [e ( _I2C_Start ..  ]
-"76
-[; ;maestro.c: 76:         I2C_Write(0x51);
+"73
+[; ;maestro.c: 73:         I2C_Write(0x51);
 [e ( _I2C_Write (1 -> -> 81 `i `uc ]
-"77
-[; ;maestro.c: 77:         valor_ADC = I2C_Read();
+"74
+[; ;maestro.c: 74:         valor_ADC = I2C_Read();
 [e = _valor_ADC ( _I2C_Read ..  ]
-"78
-[; ;maestro.c: 78:         I2C_Stop();
+"75
+[; ;maestro.c: 75:         I2C_Stop();
 [e ( _I2C_Stop ..  ]
-"79
-[; ;maestro.c: 79:         _delay((unsigned long)((10)*(8000000/4000000.0)));
+"76
+[; ;maestro.c: 76:         _delay((unsigned long)((10)*(8000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-"81
-[; ;maestro.c: 81:           if(PORTAbits.RA0 == 1)
+"78
+[; ;maestro.c: 78:           if(PORTAbits.RA0 == 1)
 [e $ ! == -> . . _PORTAbits 0 0 `i -> 1 `i 143  ]
-"82
-[; ;maestro.c: 82:         {
+"79
+[; ;maestro.c: 79:         {
 {
-"83
-[; ;maestro.c: 83:             while(PORTAbits.RA0 == 1);
+"80
+[; ;maestro.c: 80:             while(PORTAbits.RA0 == 1);
 [e $U 144  ]
 [e :U 145 ]
 [e :U 144 ]
 [e $ == -> . . _PORTAbits 0 0 `i -> 1 `i 145  ]
 [e :U 146 ]
-"84
-[; ;maestro.c: 84:             _delay((unsigned long)((20)*(8000000/4000.0)));
+"81
+[; ;maestro.c: 81:             _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"85
-[; ;maestro.c: 85:             Lcd_Clear();
+"82
+[; ;maestro.c: 82:             Lcd_Clear();
 [e ( _Lcd_Clear ..  ]
-"86
-[; ;maestro.c: 86:             selector++;
+"83
+[; ;maestro.c: 83:             selector++;
 [e ++ _selector -> -> 1 `i `c ]
-"87
-[; ;maestro.c: 87:         }
+"84
+[; ;maestro.c: 84:         }
 }
 [e :U 143 ]
-"89
-[; ;maestro.c: 89:         CLK_CONFIG();
+"86
+[; ;maestro.c: 86:         CLK_CONFIG();
 [e ( _CLK_CONFIG ..  ]
-"91
-[; ;maestro.c: 91:     }
+"87
+[; ;maestro.c: 87:     }
 }
 [e :U 140 ]
 [e $U 141  ]
 [e :U 142 ]
-"92
-[; ;maestro.c: 92: }
+"88
+[; ;maestro.c: 88: }
 [e :UE 139 ]
 }
-"96
-[; ;maestro.c: 96: void setup(void)
+"92
+[; ;maestro.c: 92: void setup(void)
 [v _setup `(v ~T0 @X0 1 ef ]
-"97
-[; ;maestro.c: 97: {
+"93
+[; ;maestro.c: 93: {
 {
 [e :U _setup ]
 [f ]
-"100
-[; ;maestro.c: 100:     ANSELH = 0;
+"95
+[; ;maestro.c: 95:     ANSEL = 0;
+[e = _ANSEL -> -> 0 `i `uc ]
+"96
+[; ;maestro.c: 96:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
+"98
+[; ;maestro.c: 98:     TRISAbits.TRISA0 = 1;
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+"99
+[; ;maestro.c: 99:     TRISAbits.TRISA1 = 1;
+[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
+"100
+[; ;maestro.c: 100:     TRISAbits.TRISA2 = 1;
+[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
 "103
 [; ;maestro.c: 103:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
@@ -561,721 +582,743 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;maestro.c: 104:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
 "107
-[; ;maestro.c: 107:     TRISA = 1;
-[e = _TRISA -> -> 1 `i `uc ]
-"110
-[; ;maestro.c: 110:     PORTB = 0;
+[; ;maestro.c: 107:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"111
-[; ;maestro.c: 111:     PORTD = 0;
+"108
+[; ;maestro.c: 108:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"112
-[; ;maestro.c: 112:     PORTA = 0;
+"109
+[; ;maestro.c: 109:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"115
-[; ;maestro.c: 115:     OSCCONbits.IRCF2 = 1;
+"112
+[; ;maestro.c: 112:     OSCCONbits.IRCF2 = 1;
 [e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
-"116
-[; ;maestro.c: 116:     OSCCONbits.IRCF1 = 1;
+"113
+[; ;maestro.c: 113:     OSCCONbits.IRCF1 = 1;
 [e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
-"117
-[; ;maestro.c: 117:     OSCCONbits.IRCF0 = 1;
+"114
+[; ;maestro.c: 114:     OSCCONbits.IRCF0 = 1;
 [e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
-"120
-[; ;maestro.c: 120:     OSCCONbits.SCS = 1;
+"117
+[; ;maestro.c: 117:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+"120
+[; ;maestro.c: 120:      Lcd_Init();
+[e ( _Lcd_Init ..  ]
 "123
 [; ;maestro.c: 123:     I2C_Init_Master(0x80);
 [e ( _I2C_Init_Master (1 -> -> 128 `i `uc ]
-"124
-[; ;maestro.c: 124: }
+"125
+[; ;maestro.c: 125: }
 [e :UE 147 ]
 }
-"126
-[; ;maestro.c: 126: void CLK_CONFIG (void)
-[v _CLK_CONFIG `(v ~T0 @X0 1 ef ]
 "127
-[; ;maestro.c: 127: {
+[; ;maestro.c: 127: void CLK_CONFIG (void)
+[v _CLK_CONFIG `(v ~T0 @X0 1 ef ]
+"128
+[; ;maestro.c: 128: {
 {
 [e :U _CLK_CONFIG ]
 [f ]
 "129
-[; ;maestro.c: 129:     if(selector == 0)
-[e $ ! == -> _selector `i -> 0 `i 149  ]
+[; ;maestro.c: 129:     switch(selector)
+[e $U 150  ]
 "130
-[; ;maestro.c: 130:     {
+[; ;maestro.c: 130:         {
 {
+"131
+[; ;maestro.c: 131:             case 0:
+[e :U 151 ]
 "132
-[; ;maestro.c: 132:         DS3231_Get_Date((uint8_t)&dia, (uint8_t)&mes, (uint8_t)&ano, (uint8_t)&dow);
+[; ;maestro.c: 132:                 DS3231_Get_Date((uint8_t)&dia, (uint8_t)&mes, (uint8_t)&ano, (uint8_t)&dow);
 [e ( _DS3231_Get_Date (4 , , , -> -> &U _dia `uc `*uc -> -> &U _mes `uc `*uc -> -> &U _ano `uc `*uc -> -> &U _dow `uc `*uc ]
 "133
-[; ;maestro.c: 133:         DS3231_Get_Time((uint8_t)&horas, (uint8_t)&minutos, (uint8_t)&segundos);
+[; ;maestro.c: 133:                 DS3231_Get_Time((uint8_t)&horas, (uint8_t)&minutos, (uint8_t)&segundos);
 [e ( _DS3231_Get_Time (3 , , -> -> &U _horas `uc `*uc -> -> &U _minutos `uc `*uc -> -> &U _segundos `uc `*uc ]
-"138
-[; ;maestro.c: 138:         Lcd_Set_Cursor(1,1);
+"135
+[; ;maestro.c: 135:                 Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"139
-[; ;maestro.c: 139:         Lcd_Write_String("ADC:");
+"136
+[; ;maestro.c: 136:                 Lcd_Write_String("ADC: ");
 [e ( _Lcd_Write_String (1 :s 1C ]
-"140
-[; ;maestro.c: 140:         Lcd_Set_Cursor(2,1);
-[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"141
-[; ;maestro.c: 141:         sprintf(buffer,"%d ", valor_ADC);
+"137
+[; ;maestro.c: 137:                 sprintf(buffer, "%u ", valor_ADC);
 [e ( _sprintf (1 , (. , &U _buffer :s 2C -> _valor_ADC `i ]
+"138
+[; ;maestro.c: 138:                 Lcd_Set_Cursor(2,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"139
+[; ;maestro.c: 139:                 Lcd_Write_String(buffer);
+[e ( _Lcd_Write_String (1 &U _buffer ]
+"141
+[; ;maestro.c: 141:                 sprintf(buffer, "%02u/%02u/20%02u", dia, mes, ano);
+[e ( _sprintf (1 , , , (. , &U _buffer :s 3C -> _dia `i -> _mes `i -> _ano `i ]
 "142
-[; ;maestro.c: 142:         Lcd_Write_String(buffer);
+[; ;maestro.c: 142:                 Lcd_Set_Cursor(1,6);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 6 `i `uc ]
+"143
+[; ;maestro.c: 143:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
+"144
+[; ;maestro.c: 144:                 sprintf(buffer, "%02u:%02u:%02u", horas, minutos, segundos);
+[e ( _sprintf (1 , , , (. , &U _buffer :s 4C -> _horas `i -> _minutos `i -> _segundos `i ]
 "145
-[; ;maestro.c: 145:         sprintf(buffer, "%02u:%02u:%02u", horas, minutos, segundos);
-[e ( _sprintf (1 , , , (. , &U _buffer :s 3C -> _horas `i -> _minutos `i -> _segundos `i ]
+[; ;maestro.c: 145:                 Lcd_Set_Cursor(2,8);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 8 `i `uc ]
 "146
-[; ;maestro.c: 146:         Lcd_Set_Cursor(1,8);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 8 `i `uc ]
-"147
-[; ;maestro.c: 147:         Lcd_Write_String(buffer);
+[; ;maestro.c: 146:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
-"148
-[; ;maestro.c: 148:         _delay((unsigned long)((200)*(8000000/4000.0)));
+"147
+[; ;maestro.c: 147:                 _delay((unsigned long)((200)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"148
+[; ;maestro.c: 148:                 break;
+[e $U 149  ]
+"150
+[; ;maestro.c: 150:             case 1:
+[e :U 152 ]
 "151
-[; ;maestro.c: 151:         sprintf(buffer, "%02u/%02u/20%02u", dia, mes, ano);
-[e ( _sprintf (1 , , , (. , &U _buffer :s 4C -> _dia `i -> _mes `i -> _ano `i ]
+[; ;maestro.c: 151:                 Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "152
-[; ;maestro.c: 152:         Lcd_Set_Cursor(2,6);
-[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 6 `i `uc ]
+[; ;maestro.c: 152:                 sprintf(buffer, "Dia: %02u", dia);
+[e ( _sprintf (1 , (. , &U _buffer :s 5C -> _dia `i ]
 "153
-[; ;maestro.c: 153:         Lcd_Write_String(buffer);
+[; ;maestro.c: 153:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
 "154
-[; ;maestro.c: 154:     }
-}
-[e :U 149 ]
+[; ;maestro.c: 154:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 153  ]
 "155
-[; ;maestro.c: 155:     if(selector == 1)
-[e $ ! == -> _selector `i -> 1 `i 150  ]
+[; ;maestro.c: 155:                 {
+{
 "156
-[; ;maestro.c: 156:     {
-{
-"157
-[; ;maestro.c: 157:       Lcd_Set_Cursor(1,1);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"158
-[; ;maestro.c: 158:                 sprintf(buffer, "Dia: %02u", dia);
-[e ( _sprintf (1 , (. , &U _buffer :s 5C -> _dia `i ]
-"159
-[; ;maestro.c: 159:                 Lcd_Write_String(buffer);
-[e ( _Lcd_Write_String (1 &U _buffer ]
-"160
-[; ;maestro.c: 160:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 151  ]
-"161
-[; ;maestro.c: 161:                 {
-{
-"162
-[; ;maestro.c: 162:                     while(PORTAbits.RA1 == 1);
-[e $U 152  ]
-[e :U 153 ]
-[e :U 152 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 153  ]
-[e :U 154 ]
-"163
-[; ;maestro.c: 163:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"164
-[; ;maestro.c: 164:                     dia++;
-[e ++ _dia -> -> 1 `i `c ]
-"165
-[; ;maestro.c: 165:                     if(dia > 31){
-[e $ ! > -> _dia `i -> 31 `i 155  ]
-{
-"166
-[; ;maestro.c: 166:                         dia = 31;
-[e = _dia -> -> 31 `i `c ]
-"167
-[; ;maestro.c: 167:                     }
-}
+[; ;maestro.c: 156:                     while(PORTAbits.RA1 == 1);
+[e $U 154  ]
 [e :U 155 ]
-"168
-[; ;maestro.c: 168:                 }
-}
-[e :U 151 ]
-"169
-[; ;maestro.c: 169:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 156  ]
-"170
-[; ;maestro.c: 170:                 {
-{
-"171
-[; ;maestro.c: 171:                     while(PORTAbits.RA2 == 1);
-[e $U 157  ]
-[e :U 158 ]
-[e :U 157 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 158  ]
-[e :U 159 ]
-"172
-[; ;maestro.c: 172:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"173
-[; ;maestro.c: 173:                     dia--;
-[e -- _dia -> -> 1 `i `c ]
-"174
-[; ;maestro.c: 174:                     if(dia < 1){
-[e $ ! < -> _dia `i -> 1 `i 160  ]
-{
-"175
-[; ;maestro.c: 175:                         dia = 1;
-[e = _dia -> -> 1 `i `c ]
-"176
-[; ;maestro.c: 176:                     }
-}
-[e :U 160 ]
-"177
-[; ;maestro.c: 177:                 }
-}
+[e :U 154 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 155  ]
 [e :U 156 ]
-"178
-[; ;maestro.c: 178:     }
-}
-[e :U 150 ]
-"179
-[; ;maestro.c: 179:     if(selector == 2)
-[e $ ! == -> _selector `i -> 2 `i 161  ]
-"180
-[; ;maestro.c: 180:     {
-{
-"181
-[; ;maestro.c: 181:     Lcd_Set_Cursor(1,1);
-[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"182
-[; ;maestro.c: 182:                 sprintf(buffer, "Mes: %02u", mes);
-[e ( _sprintf (1 , (. , &U _buffer :s 6C -> _mes `i ]
-"183
-[; ;maestro.c: 183:                 Lcd_Write_String(buffer);
-[e ( _Lcd_Write_String (1 &U _buffer ]
-"184
-[; ;maestro.c: 184:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 162  ]
-"185
-[; ;maestro.c: 185:                 {
-{
-"186
-[; ;maestro.c: 186:                     while(PORTAbits.RA1 == 1);
-[e $U 163  ]
-[e :U 164 ]
-[e :U 163 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 164  ]
-[e :U 165 ]
-"187
-[; ;maestro.c: 187:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+"157
+[; ;maestro.c: 157:                     _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"188
-[; ;maestro.c: 188:                     mes++;
-[e ++ _mes -> -> 1 `i `c ]
-"189
-[; ;maestro.c: 189:                     if(mes > 12){
-[e $ ! > -> _mes `i -> 12 `i 166  ]
+"158
+[; ;maestro.c: 158:                     dia++;
+[e ++ _dia -> -> 1 `i `c ]
+"159
+[; ;maestro.c: 159:                     if(dia > 31){
+[e $ ! > -> _dia `i -> 31 `i 157  ]
 {
-"190
-[; ;maestro.c: 190:                         mes = 12;
-[e = _mes -> -> 12 `i `c ]
-"191
-[; ;maestro.c: 191:                     }
+"160
+[; ;maestro.c: 160:                         dia = 31;
+[e = _dia -> -> 31 `i `c ]
+"161
+[; ;maestro.c: 161:                     }
 }
-[e :U 166 ]
-"192
-[; ;maestro.c: 192:                 }
+[e :U 157 ]
+"162
+[; ;maestro.c: 162:                 }
+}
+[e :U 153 ]
+"163
+[; ;maestro.c: 163:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 158  ]
+"164
+[; ;maestro.c: 164:                 {
+{
+"165
+[; ;maestro.c: 165:                     while(PORTAbits.RA2 == 1);
+[e $U 159  ]
+[e :U 160 ]
+[e :U 159 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 160  ]
+[e :U 161 ]
+"166
+[; ;maestro.c: 166:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"167
+[; ;maestro.c: 167:                     dia--;
+[e -- _dia -> -> 1 `i `c ]
+"168
+[; ;maestro.c: 168:                     if(dia < 1){
+[e $ ! < -> _dia `i -> 1 `i 162  ]
+{
+"169
+[; ;maestro.c: 169:                         dia = 1;
+[e = _dia -> -> 1 `i `c ]
+"170
+[; ;maestro.c: 170:                     }
 }
 [e :U 162 ]
-"193
-[; ;maestro.c: 193:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 167  ]
-"194
-[; ;maestro.c: 194:                 {
-{
-"195
-[; ;maestro.c: 195:                     while(PORTAbits.RA2 == 1);
-[e $U 168  ]
-[e :U 169 ]
-[e :U 168 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 169  ]
-[e :U 170 ]
-"196
-[; ;maestro.c: 196:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"197
-[; ;maestro.c: 197:                     mes--;
-[e -- _mes -> -> 1 `i `c ]
-"198
-[; ;maestro.c: 198:                     if(mes < 1){
-[e $ ! < -> _mes `i -> 1 `i 171  ]
-{
-"199
-[; ;maestro.c: 199:                         mes = 1;
-[e = _mes -> -> 1 `i `c ]
-"200
-[; ;maestro.c: 200:                     }
+"171
+[; ;maestro.c: 171:                 }
 }
-[e :U 171 ]
-"201
-[; ;maestro.c: 201:                 }
-}
-[e :U 167 ]
-"202
-[; ;maestro.c: 202:     }
-}
-[e :U 161 ]
-"203
-[; ;maestro.c: 203:     if (selector == 3)
-[e $ ! == -> _selector `i -> 3 `i 172  ]
-"204
-[; ;maestro.c: 204:     {
-{
-"205
-[; ;maestro.c: 205:      Lcd_Set_Cursor(1,1);
+[e :U 158 ]
+"172
+[; ;maestro.c: 172:                 break;
+[e $U 149  ]
+"174
+[; ;maestro.c: 174:             case 2:
+[e :U 163 ]
+"175
+[; ;maestro.c: 175:                 Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"206
-[; ;maestro.c: 206:                 sprintf(buffer, "ANO: %02u", ano);
-[e ( _sprintf (1 , (. , &U _buffer :s 7C -> _ano `i ]
-"207
-[; ;maestro.c: 207:                 Lcd_Write_String(buffer);
+"176
+[; ;maestro.c: 176:                 sprintf(buffer, "Mes: %02u", mes);
+[e ( _sprintf (1 , (. , &U _buffer :s 6C -> _mes `i ]
+"177
+[; ;maestro.c: 177:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
-"208
-[; ;maestro.c: 208:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 173  ]
-"209
-[; ;maestro.c: 209:                 {
+"178
+[; ;maestro.c: 178:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 164  ]
+"179
+[; ;maestro.c: 179:                 {
 {
-"210
-[; ;maestro.c: 210:                     while(PORTAbits.RA1 == 1);
-[e $U 174  ]
-[e :U 175 ]
-[e :U 174 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 175  ]
-[e :U 176 ]
-"211
-[; ;maestro.c: 211:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+"180
+[; ;maestro.c: 180:                     while(PORTAbits.RA1 == 1);
+[e $U 165  ]
+[e :U 166 ]
+[e :U 165 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 166  ]
+[e :U 167 ]
+"181
+[; ;maestro.c: 181:                     _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"212
-[; ;maestro.c: 212:                     ano++;
-[e ++ _ano -> -> 1 `i `c ]
-"213
-[; ;maestro.c: 213:                     if(ano > 99){
-[e $ ! > -> _ano `i -> 99 `i 177  ]
+"182
+[; ;maestro.c: 182:                     mes++;
+[e ++ _mes -> -> 1 `i `c ]
+"183
+[; ;maestro.c: 183:                     if(mes > 12){
+[e $ ! > -> _mes `i -> 12 `i 168  ]
 {
-"214
-[; ;maestro.c: 214:                         ano = 99;
-[e = _ano -> -> 99 `i `c ]
-"215
-[; ;maestro.c: 215:                     }
+"184
+[; ;maestro.c: 184:                         mes = 12;
+[e = _mes -> -> 12 `i `c ]
+"185
+[; ;maestro.c: 185:                     }
 }
-[e :U 177 ]
-"216
-[; ;maestro.c: 216:                 }
+[e :U 168 ]
+"186
+[; ;maestro.c: 186:                 }
+}
+[e :U 164 ]
+"187
+[; ;maestro.c: 187:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 169  ]
+"188
+[; ;maestro.c: 188:                 {
+{
+"189
+[; ;maestro.c: 189:                     while(PORTAbits.RA2 == 1);
+[e $U 170  ]
+[e :U 171 ]
+[e :U 170 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 171  ]
+[e :U 172 ]
+"190
+[; ;maestro.c: 190:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"191
+[; ;maestro.c: 191:                     mes--;
+[e -- _mes -> -> 1 `i `c ]
+"192
+[; ;maestro.c: 192:                     if(mes < 1){
+[e $ ! < -> _mes `i -> 1 `i 173  ]
+{
+"193
+[; ;maestro.c: 193:                         mes = 1;
+[e = _mes -> -> 1 `i `c ]
+"194
+[; ;maestro.c: 194:                     }
 }
 [e :U 173 ]
-"217
-[; ;maestro.c: 217:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 178  ]
-"218
-[; ;maestro.c: 218:                 {
-{
-"219
-[; ;maestro.c: 219:                     while(PORTAbits.RA2 == 1);
-[e $U 179  ]
-[e :U 180 ]
-[e :U 179 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 180  ]
-[e :U 181 ]
-"220
-[; ;maestro.c: 220:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"221
-[; ;maestro.c: 221:                     ano--;
-[e -- _ano -> -> 1 `i `c ]
-"222
-[; ;maestro.c: 222:                     if(ano == -1){
-[e $ ! == -> _ano `i -U -> 1 `i 182  ]
-{
-"223
-[; ;maestro.c: 223:                         ano = 0;
-[e = _ano -> -> 0 `i `c ]
-"224
-[; ;maestro.c: 224:                     }
+"195
+[; ;maestro.c: 195:                 }
 }
-[e :U 182 ]
-"225
-[; ;maestro.c: 225:                 }
-}
-[e :U 178 ]
-"226
-[; ;maestro.c: 226:     }
-}
-[e :U 172 ]
-"227
-[; ;maestro.c: 227:     if (selector == 4)
-[e $ ! == -> _selector `i -> 4 `i 183  ]
-"228
-[; ;maestro.c: 228:     {
-{
-"229
-[; ;maestro.c: 229:        Lcd_Set_Cursor(1,1);
+[e :U 169 ]
+"196
+[; ;maestro.c: 196:                 break;
+[e $U 149  ]
+"198
+[; ;maestro.c: 198:             case 3:
+[e :U 174 ]
+"199
+[; ;maestro.c: 199:                 Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"230
-[; ;maestro.c: 230:                 sprintf(buffer, "Dia semana: %u", dow);
-[e ( _sprintf (1 , (. , &U _buffer :s 8C -> _dow `i ]
-"231
-[; ;maestro.c: 231:                 Lcd_Write_String(buffer);
+"200
+[; ;maestro.c: 200:                 sprintf(buffer, "ANO: %02u", ano);
+[e ( _sprintf (1 , (. , &U _buffer :s 7C -> _ano `i ]
+"201
+[; ;maestro.c: 201:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
-"232
-[; ;maestro.c: 232:                 Lcd_Set_Cursor(2,1);
-[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"233
-[; ;maestro.c: 233:                 sprintf(buffer, "%s    ", dw[dow]);
-[e ( _sprintf (1 , (. , &U _buffer :s 9C &U *U + &U _dw * -> -> _dow `uc `ux -> * -> # *U &U *U &U _dw `ui -> -> 11 `i `ui `ux ]
-"234
-[; ;maestro.c: 234:                 Lcd_Write_String(buffer);
-[e ( _Lcd_Write_String (1 &U _buffer ]
-"235
-[; ;maestro.c: 235:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 184  ]
-"236
-[; ;maestro.c: 236:                 {
+"202
+[; ;maestro.c: 202:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 175  ]
+"203
+[; ;maestro.c: 203:                 {
 {
-"237
-[; ;maestro.c: 237:                     while(PORTAbits.RA1 == 1);
-[e $U 185  ]
-[e :U 186 ]
-[e :U 185 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 186  ]
-[e :U 187 ]
-"238
-[; ;maestro.c: 238:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+"204
+[; ;maestro.c: 204:                     while(PORTAbits.RA1 == 1);
+[e $U 176  ]
+[e :U 177 ]
+[e :U 176 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 177  ]
+[e :U 178 ]
+"205
+[; ;maestro.c: 205:                     _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"239
-[; ;maestro.c: 239:                     dow++;
-[e ++ _dow -> -> 1 `i `c ]
-"240
-[; ;maestro.c: 240:                     if(dow > 6){
-[e $ ! > -> _dow `i -> 6 `i 188  ]
+"206
+[; ;maestro.c: 206:                     ano++;
+[e ++ _ano -> -> 1 `i `c ]
+"207
+[; ;maestro.c: 207:                     if(ano > 99){
+[e $ ! > -> _ano `i -> 99 `i 179  ]
 {
-"241
-[; ;maestro.c: 241:                         dow = 6;
-[e = _dow -> -> 6 `i `c ]
-"242
-[; ;maestro.c: 242:                     }
+"208
+[; ;maestro.c: 208:                         ano = 99;
+[e = _ano -> -> 99 `i `c ]
+"209
+[; ;maestro.c: 209:                     }
 }
-[e :U 188 ]
-"243
-[; ;maestro.c: 243:                 }
+[e :U 179 ]
+"210
+[; ;maestro.c: 210:                 }
+}
+[e :U 175 ]
+"211
+[; ;maestro.c: 211:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 180  ]
+"212
+[; ;maestro.c: 212:                 {
+{
+"213
+[; ;maestro.c: 213:                     while(PORTAbits.RA2 == 1);
+[e $U 181  ]
+[e :U 182 ]
+[e :U 181 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 182  ]
+[e :U 183 ]
+"214
+[; ;maestro.c: 214:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"215
+[; ;maestro.c: 215:                     ano--;
+[e -- _ano -> -> 1 `i `c ]
+"216
+[; ;maestro.c: 216:                     if(ano == -1){
+[e $ ! == -> _ano `i -U -> 1 `i 184  ]
+{
+"217
+[; ;maestro.c: 217:                         ano = 0;
+[e = _ano -> -> 0 `i `c ]
+"218
+[; ;maestro.c: 218:                     }
 }
 [e :U 184 ]
-"244
-[; ;maestro.c: 244:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 189  ]
-"245
-[; ;maestro.c: 245:                 {
-{
-"246
-[; ;maestro.c: 246:                     while(PORTAbits.RA2 == 1);
-[e $U 190  ]
-[e :U 191 ]
-[e :U 190 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 191  ]
-[e :U 192 ]
-"247
-[; ;maestro.c: 247:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"248
-[; ;maestro.c: 248:                     dow--;
-[e -- _dow -> -> 1 `i `c ]
-"249
-[; ;maestro.c: 249:                     if(dow == -1){
-[e $ ! == -> _dow `i -U -> 1 `i 193  ]
-{
-"250
-[; ;maestro.c: 250:                         dow = 0;
-[e = _dow -> -> 0 `i `c ]
-"251
-[; ;maestro.c: 251:                     }
+"219
+[; ;maestro.c: 219:                 }
 }
-[e :U 193 ]
-"252
-[; ;maestro.c: 252:                 }
-}
-[e :U 189 ]
-"253
-[; ;maestro.c: 253:     }
-}
-[e :U 183 ]
-"254
-[; ;maestro.c: 254:     if(selector == 5)
-[e $ ! == -> _selector `i -> 5 `i 194  ]
-"255
-[; ;maestro.c: 255:     {
-{
-"256
-[; ;maestro.c: 256:        Lcd_Set_Cursor(1,1);
+[e :U 180 ]
+"220
+[; ;maestro.c: 220:                 break;
+[e $U 149  ]
+"222
+[; ;maestro.c: 222:             case 4:
+[e :U 185 ]
+"223
+[; ;maestro.c: 223:                 Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"257
-[; ;maestro.c: 257:                 sprintf(buffer, "Hora: %02u", horas);
-[e ( _sprintf (1 , (. , &U _buffer :s 10C -> _horas `i ]
-"258
-[; ;maestro.c: 258:                 Lcd_Write_String(buffer);
+"224
+[; ;maestro.c: 224:                 sprintf(buffer, "Dia semana: %u", dow);
+[e ( _sprintf (1 , (. , &U _buffer :s 8C -> _dow `i ]
+"225
+[; ;maestro.c: 225:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
-"259
-[; ;maestro.c: 259:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 195  ]
-"260
-[; ;maestro.c: 260:                 {
+"226
+[; ;maestro.c: 226:                 Lcd_Set_Cursor(2,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"227
+[; ;maestro.c: 227:                 sprintf(buffer, "%s    ", dw[dow]);
+[e ( _sprintf (1 , (. , &U _buffer :s 9C &U *U + &U _dw * -> -> _dow `uc `ux -> * -> # *U &U *U &U _dw `ui -> -> 11 `i `ui `ux ]
+"228
+[; ;maestro.c: 228:                 Lcd_Write_String(buffer);
+[e ( _Lcd_Write_String (1 &U _buffer ]
+"229
+[; ;maestro.c: 229:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 186  ]
+"230
+[; ;maestro.c: 230:                 {
 {
-"261
-[; ;maestro.c: 261:                     while(PORTAbits.RA1 == 1);
-[e $U 196  ]
-[e :U 197 ]
-[e :U 196 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 197  ]
-[e :U 198 ]
-"262
-[; ;maestro.c: 262:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+"231
+[; ;maestro.c: 231:                     while(PORTAbits.RA1 == 1);
+[e $U 187  ]
+[e :U 188 ]
+[e :U 187 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 188  ]
+[e :U 189 ]
+"232
+[; ;maestro.c: 232:                     _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"263
-[; ;maestro.c: 263:                     horas++;
-[e ++ _horas -> -> 1 `i `c ]
-"264
-[; ;maestro.c: 264:                     if(horas > 23){
-[e $ ! > -> _horas `i -> 23 `i 199  ]
+"233
+[; ;maestro.c: 233:                     dow++;
+[e ++ _dow -> -> 1 `i `c ]
+"234
+[; ;maestro.c: 234:                     if(dow > 6){
+[e $ ! > -> _dow `i -> 6 `i 190  ]
 {
-"265
-[; ;maestro.c: 265:                         horas = 23;
-[e = _horas -> -> 23 `i `c ]
-"266
-[; ;maestro.c: 266:                     }
+"235
+[; ;maestro.c: 235:                         dow = 6;
+[e = _dow -> -> 6 `i `c ]
+"236
+[; ;maestro.c: 236:                     }
 }
-[e :U 199 ]
-"267
-[; ;maestro.c: 267:                 }
+[e :U 190 ]
+"237
+[; ;maestro.c: 237:                 }
+}
+[e :U 186 ]
+"238
+[; ;maestro.c: 238:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 191  ]
+"239
+[; ;maestro.c: 239:                 {
+{
+"240
+[; ;maestro.c: 240:                     while(PORTAbits.RA2 == 1);
+[e $U 192  ]
+[e :U 193 ]
+[e :U 192 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 193  ]
+[e :U 194 ]
+"241
+[; ;maestro.c: 241:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"242
+[; ;maestro.c: 242:                     dow--;
+[e -- _dow -> -> 1 `i `c ]
+"243
+[; ;maestro.c: 243:                     if(dow == -1){
+[e $ ! == -> _dow `i -U -> 1 `i 195  ]
+{
+"244
+[; ;maestro.c: 244:                         dow = 0;
+[e = _dow -> -> 0 `i `c ]
+"245
+[; ;maestro.c: 245:                     }
 }
 [e :U 195 ]
-"268
-[; ;maestro.c: 268:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 200  ]
-"269
-[; ;maestro.c: 269:                 {
-{
-"270
-[; ;maestro.c: 270:                     while(PORTAbits.RA2 == 1);
-[e $U 201  ]
-[e :U 202 ]
-[e :U 201 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 202  ]
-[e :U 203 ]
-"271
-[; ;maestro.c: 271:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"272
-[; ;maestro.c: 272:                     horas--;
-[e -- _horas -> -> 1 `i `c ]
-"273
-[; ;maestro.c: 273:                     if(horas == -1){
-[e $ ! == -> _horas `i -U -> 1 `i 204  ]
-{
-"274
-[; ;maestro.c: 274:                         horas = 0;
-[e = _horas -> -> 0 `i `c ]
-"275
-[; ;maestro.c: 275:                     }
+"246
+[; ;maestro.c: 246:                 }
 }
-[e :U 204 ]
-"276
-[; ;maestro.c: 276:                 }
-}
-[e :U 200 ]
-"277
-[; ;maestro.c: 277:     }
-}
-[e :U 194 ]
-"278
-[; ;maestro.c: 278:     if (selector == 6)
-[e $ ! == -> _selector `i -> 6 `i 205  ]
-"279
-[; ;maestro.c: 279:     {
-{
-"280
-[; ;maestro.c: 280:      Lcd_Set_Cursor(1,1);
+[e :U 191 ]
+"247
+[; ;maestro.c: 247:                 break;
+[e $U 149  ]
+"249
+[; ;maestro.c: 249:             case 5:
+[e :U 196 ]
+"250
+[; ;maestro.c: 250:                 Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"281
-[; ;maestro.c: 281:                 sprintf(buffer, "minutosuto: %02u", minutos);
-[e ( _sprintf (1 , (. , &U _buffer :s 11C -> _minutos `i ]
-"282
-[; ;maestro.c: 282:                 Lcd_Write_String(buffer);
+"251
+[; ;maestro.c: 251:                 sprintf(buffer, "Hora: %02u", horas);
+[e ( _sprintf (1 , (. , &U _buffer :s 10C -> _horas `i ]
+"252
+[; ;maestro.c: 252:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
-"283
-[; ;maestro.c: 283:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 206  ]
-"284
-[; ;maestro.c: 284:                 {
+"253
+[; ;maestro.c: 253:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 197  ]
+"254
+[; ;maestro.c: 254:                 {
 {
-"285
-[; ;maestro.c: 285:                     while(PORTAbits.RA1 == 1);
-[e $U 207  ]
-[e :U 208 ]
-[e :U 207 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 208  ]
-[e :U 209 ]
-"286
-[; ;maestro.c: 286:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+"255
+[; ;maestro.c: 255:                     while(PORTAbits.RA1 == 1);
+[e $U 198  ]
+[e :U 199 ]
+[e :U 198 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 199  ]
+[e :U 200 ]
+"256
+[; ;maestro.c: 256:                     _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"287
-[; ;maestro.c: 287:                     minutos++;
-[e ++ _minutos -> -> 1 `i `c ]
-"288
-[; ;maestro.c: 288:                     if(minutos > 59){
-[e $ ! > -> _minutos `i -> 59 `i 210  ]
+"257
+[; ;maestro.c: 257:                     horas++;
+[e ++ _horas -> -> 1 `i `c ]
+"258
+[; ;maestro.c: 258:                     if(horas > 23){
+[e $ ! > -> _horas `i -> 23 `i 201  ]
 {
-"289
-[; ;maestro.c: 289:                         minutos = 59;
-[e = _minutos -> -> 59 `i `c ]
-"290
-[; ;maestro.c: 290:                     }
+"259
+[; ;maestro.c: 259:                         horas = 23;
+[e = _horas -> -> 23 `i `c ]
+"260
+[; ;maestro.c: 260:                     }
 }
-[e :U 210 ]
-"291
-[; ;maestro.c: 291:                 }
+[e :U 201 ]
+"261
+[; ;maestro.c: 261:                 }
+}
+[e :U 197 ]
+"262
+[; ;maestro.c: 262:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 202  ]
+"263
+[; ;maestro.c: 263:                 {
+{
+"264
+[; ;maestro.c: 264:                     while(PORTAbits.RA2 == 1);
+[e $U 203  ]
+[e :U 204 ]
+[e :U 203 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 204  ]
+[e :U 205 ]
+"265
+[; ;maestro.c: 265:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"266
+[; ;maestro.c: 266:                     horas--;
+[e -- _horas -> -> 1 `i `c ]
+"267
+[; ;maestro.c: 267:                     if(horas == -1){
+[e $ ! == -> _horas `i -U -> 1 `i 206  ]
+{
+"268
+[; ;maestro.c: 268:                         horas = 0;
+[e = _horas -> -> 0 `i `c ]
+"269
+[; ;maestro.c: 269:                     }
 }
 [e :U 206 ]
-"292
-[; ;maestro.c: 292:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 211  ]
-"293
-[; ;maestro.c: 293:                 {
-{
-"294
-[; ;maestro.c: 294:                     while(PORTAbits.RA2 == 1);
-[e $U 212  ]
-[e :U 213 ]
-[e :U 212 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 213  ]
-[e :U 214 ]
-"295
-[; ;maestro.c: 295:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"296
-[; ;maestro.c: 296:                     minutos--;
-[e -- _minutos -> -> 1 `i `c ]
-"297
-[; ;maestro.c: 297:                     if(minutos == -1){
-[e $ ! == -> _minutos `i -U -> 1 `i 215  ]
-{
-"298
-[; ;maestro.c: 298:                         minutos = 0;
-[e = _minutos -> -> 0 `i `c ]
-"299
-[; ;maestro.c: 299:                     }
+"270
+[; ;maestro.c: 270:                 }
 }
-[e :U 215 ]
-"300
-[; ;maestro.c: 300:                 }
-}
-[e :U 211 ]
-"301
-[; ;maestro.c: 301:     }
-}
-[e :U 205 ]
-"302
-[; ;maestro.c: 302:     if (selector == 7)
-[e $ ! == -> _selector `i -> 7 `i 216  ]
-"303
-[; ;maestro.c: 303:     {
-{
-"304
-[; ;maestro.c: 304:      Lcd_Set_Cursor(1,1);
+[e :U 202 ]
+"271
+[; ;maestro.c: 271:                 break;
+[e $U 149  ]
+"273
+[; ;maestro.c: 273:             case 6:
+[e :U 207 ]
+"274
+[; ;maestro.c: 274:                 Lcd_Set_Cursor(1,1);
 [e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"305
-[; ;maestro.c: 305:                 sprintf(buffer, "Segundo: %02u", segundos);
-[e ( _sprintf (1 , (. , &U _buffer :s 12C -> _segundos `i ]
-"306
-[; ;maestro.c: 306:                 Lcd_Write_String(buffer);
+"275
+[; ;maestro.c: 275:                 sprintf(buffer, "minutosuto: %02u", minutos);
+[e ( _sprintf (1 , (. , &U _buffer :s 11C -> _minutos `i ]
+"276
+[; ;maestro.c: 276:                 Lcd_Write_String(buffer);
 [e ( _Lcd_Write_String (1 &U _buffer ]
-"307
-[; ;maestro.c: 307:                 if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 217  ]
-"308
-[; ;maestro.c: 308:                 {
+"277
+[; ;maestro.c: 277:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 208  ]
+"278
+[; ;maestro.c: 278:                 {
 {
-"309
-[; ;maestro.c: 309:                     while(PORTAbits.RA1 == 1);
-[e $U 218  ]
-[e :U 219 ]
-[e :U 218 ]
-[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 219  ]
-[e :U 220 ]
-"310
-[; ;maestro.c: 310:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+"279
+[; ;maestro.c: 279:                     while(PORTAbits.RA1 == 1);
+[e $U 209  ]
+[e :U 210 ]
+[e :U 209 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 210  ]
+[e :U 211 ]
+"280
+[; ;maestro.c: 280:                     _delay((unsigned long)((20)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"311
-[; ;maestro.c: 311:                     segundos++;
-[e ++ _segundos -> -> 1 `i `c ]
-"312
-[; ;maestro.c: 312:                     if(segundos > 59){
-[e $ ! > -> _segundos `i -> 59 `i 221  ]
+"281
+[; ;maestro.c: 281:                     minutos++;
+[e ++ _minutos -> -> 1 `i `c ]
+"282
+[; ;maestro.c: 282:                     if(minutos > 59){
+[e $ ! > -> _minutos `i -> 59 `i 212  ]
 {
-"313
-[; ;maestro.c: 313:                         segundos = 59;
-[e = _segundos -> -> 59 `i `c ]
-"314
-[; ;maestro.c: 314:                     }
+"283
+[; ;maestro.c: 283:                         minutos = 59;
+[e = _minutos -> -> 59 `i `c ]
+"284
+[; ;maestro.c: 284:                     }
 }
-[e :U 221 ]
-"315
-[; ;maestro.c: 315:                 }
+[e :U 212 ]
+"285
+[; ;maestro.c: 285:                 }
+}
+[e :U 208 ]
+"286
+[; ;maestro.c: 286:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 213  ]
+"287
+[; ;maestro.c: 287:                 {
+{
+"288
+[; ;maestro.c: 288:                     while(PORTAbits.RA2 == 1);
+[e $U 214  ]
+[e :U 215 ]
+[e :U 214 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 215  ]
+[e :U 216 ]
+"289
+[; ;maestro.c: 289:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"290
+[; ;maestro.c: 290:                     minutos--;
+[e -- _minutos -> -> 1 `i `c ]
+"291
+[; ;maestro.c: 291:                     if(minutos == -1){
+[e $ ! == -> _minutos `i -U -> 1 `i 217  ]
+{
+"292
+[; ;maestro.c: 292:                         minutos = 0;
+[e = _minutos -> -> 0 `i `c ]
+"293
+[; ;maestro.c: 293:                     }
 }
 [e :U 217 ]
-"316
-[; ;maestro.c: 316:                 if(PORTAbits.RA2 == 1)
-[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 222  ]
-"317
-[; ;maestro.c: 317:                 {
-{
-"318
-[; ;maestro.c: 318:                     while(PORTAbits.RA2 == 1);
-[e $U 223  ]
-[e :U 224 ]
-[e :U 223 ]
-[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 224  ]
-[e :U 225 ]
-"319
-[; ;maestro.c: 319:                     _delay((unsigned long)((20)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"320
-[; ;maestro.c: 320:                     segundos--;
-[e -- _segundos -> -> 1 `i `c ]
-"321
-[; ;maestro.c: 321:                     if(segundos == -1){
-[e $ ! == -> _segundos `i -U -> 1 `i 226  ]
-{
-"322
-[; ;maestro.c: 322:                         segundos = 0;
-[e = _segundos -> -> 0 `i `c ]
-"323
-[; ;maestro.c: 323:                     }
+"294
+[; ;maestro.c: 294:                 }
 }
-[e :U 226 ]
-"324
-[; ;maestro.c: 324:                 }
-}
+[e :U 213 ]
+"295
+[; ;maestro.c: 295:                 break;
+[e $U 149  ]
+"297
+[; ;maestro.c: 297:             case 7:
+[e :U 218 ]
+"298
+[; ;maestro.c: 298:                 Lcd_Set_Cursor(1,1);
+[e ( _Lcd_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"299
+[; ;maestro.c: 299:                 sprintf(buffer, "Segundo: %02u", segundos);
+[e ( _sprintf (1 , (. , &U _buffer :s 12C -> _segundos `i ]
+"300
+[; ;maestro.c: 300:                 Lcd_Write_String(buffer);
+[e ( _Lcd_Write_String (1 &U _buffer ]
+"301
+[; ;maestro.c: 301:                 if(PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 219  ]
+"302
+[; ;maestro.c: 302:                 {
+{
+"303
+[; ;maestro.c: 303:                     while(PORTAbits.RA1 == 1);
+[e $U 220  ]
+[e :U 221 ]
+[e :U 220 ]
+[e $ == -> . . _PORTAbits 0 1 `i -> 1 `i 221  ]
 [e :U 222 ]
-"325
-[; ;maestro.c: 325:     }
+"304
+[; ;maestro.c: 304:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"305
+[; ;maestro.c: 305:                     segundos++;
+[e ++ _segundos -> -> 1 `i `c ]
+"306
+[; ;maestro.c: 306:                     if(segundos > 59){
+[e $ ! > -> _segundos `i -> 59 `i 223  ]
+{
+"307
+[; ;maestro.c: 307:                         segundos = 59;
+[e = _segundos -> -> 59 `i `c ]
+"308
+[; ;maestro.c: 308:                     }
 }
-[e :U 216 ]
+[e :U 223 ]
+"309
+[; ;maestro.c: 309:                 }
+}
+[e :U 219 ]
+"310
+[; ;maestro.c: 310:                 if(PORTAbits.RA2 == 1)
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 224  ]
+"311
+[; ;maestro.c: 311:                 {
+{
+"312
+[; ;maestro.c: 312:                     while(PORTAbits.RA2 == 1);
+[e $U 225  ]
+[e :U 226 ]
+[e :U 225 ]
+[e $ == -> . . _PORTAbits 0 2 `i -> 1 `i 226  ]
+[e :U 227 ]
+"313
+[; ;maestro.c: 313:                     _delay((unsigned long)((20)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"314
+[; ;maestro.c: 314:                     segundos--;
+[e -- _segundos -> -> 1 `i `c ]
+"315
+[; ;maestro.c: 315:                     if(segundos == -1){
+[e $ ! == -> _segundos `i -U -> 1 `i 228  ]
+{
+"316
+[; ;maestro.c: 316:                         segundos = 0;
+[e = _segundos -> -> 0 `i `c ]
+"317
+[; ;maestro.c: 317:                     }
+}
+[e :U 228 ]
+"318
+[; ;maestro.c: 318:                 }
+}
+[e :U 224 ]
+"319
+[; ;maestro.c: 319:                 break;
+[e $U 149  ]
+"321
+[; ;maestro.c: 321:             default:
+[e :U 229 ]
+"322
+[; ;maestro.c: 322:              dia = (uint8_t)dia;
+[e = _dia -> -> _dia `uc `c ]
+"323
+[; ;maestro.c: 323:              mes = (uint8_t)mes;
+[e = _mes -> -> _mes `uc `c ]
+"324
+[; ;maestro.c: 324:              ano = (uint8_t)ano;
+[e = _ano -> -> _ano `uc `c ]
+"325
+[; ;maestro.c: 325:              dow = (uint8_t)dow;
+[e = _dow -> -> _dow `uc `c ]
+"326
+[; ;maestro.c: 326:              horas = (uint8_t)horas;
+[e = _horas -> -> _horas `uc `c ]
 "327
-[; ;maestro.c: 327: }
+[; ;maestro.c: 327:              minutos = (uint8_t)minutos;
+[e = _minutos -> -> _minutos `uc `c ]
+"328
+[; ;maestro.c: 328:              segundos = (uint8_t)segundos;
+[e = _segundos -> -> _segundos `uc `c ]
+"329
+[; ;maestro.c: 329:                 DS3231_Set_Date_Time(dia,mes,ano,dow,horas,minutos,segundos);
+[e ( _DS3231_Set_Date_Time (4 , , , , , , -> _dia `uc -> _mes `uc -> _ano `uc -> _dow `uc -> _horas `uc -> _minutos `uc -> _segundos `uc ]
+"330
+[; ;maestro.c: 330:                 selector = 0;
+[e = _selector -> -> 0 `i `c ]
+"331
+[; ;maestro.c: 331:                 break;
+[e $U 149  ]
+"332
+[; ;maestro.c: 332:         }
+}
+[e $U 149  ]
+[e :U 150 ]
+[e [\ -> _selector `i , $ -> 0 `i 151
+ , $ -> 1 `i 152
+ , $ -> 2 `i 163
+ , $ -> 3 `i 174
+ , $ -> 4 `i 185
+ , $ -> 5 `i 196
+ , $ -> 6 `i 207
+ , $ -> 7 `i 218
+ 229 ]
+[e :U 149 ]
+"333
+[; ;maestro.c: 333: }
 [e :UE 148 ]
 }
-[p f _sprintf 8684676 ]
-[a 3C 37 48 50 117 58 37 48 50 117 58 37 48 50 117 0 ]
-[a 4C 37 48 50 117 47 37 48 50 117 47 50 48 37 48 50 117 0 ]
+[p f _sprintf 8684548 ]
+[a 4C 37 48 50 117 58 37 48 50 117 58 37 48 50 117 0 ]
+[a 3C 37 48 50 117 47 37 48 50 117 47 50 48 37 48 50 117 0 ]
 [a 6C 77 101 115 58 32 37 48 50 117 0 ]
 [a 11C 109 105 110 117 116 111 115 117 116 111 58 32 37 48 50 117 0 ]
 [a 12C 83 101 103 117 110 100 111 58 32 37 48 50 117 0 ]
@@ -1283,6 +1326,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 5C 68 105 97 58 32 37 48 50 117 0 ]
 [a 7C 65 78 79 58 32 37 48 50 117 0 ]
 [a 8C 68 105 97 32 115 101 109 97 110 97 58 32 37 117 0 ]
-[a 1C 65 68 67 58 0 ]
-[a 2C 37 100 32 0 ]
+[a 2C 37 117 32 0 ]
+[a 1C 65 68 67 58 32 0 ]
 [a 9C 37 115 32 32 32 32 0 ]
